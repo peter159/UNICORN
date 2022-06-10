@@ -106,7 +106,7 @@
 (require 'init-c-c++)
 (require 'init-java)
 (require 'init-org)
-(require 'init-eaf)
+;; (require 'init-eaf)
 (require 'init-dockerfile)
 (require 'init-html)
 (require 'init-markdown)

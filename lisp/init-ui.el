@@ -126,8 +126,9 @@
   (doom-themes-org-config))
 
 ;; (load-theme 'doom-dark+ t)
-(load-theme 'doom-acario-light t)
+;; (load-theme 'doom-acario-light t)
 ;; (load-theme 'doom-gruvbox-light t)
+(load-theme 'doom-dracula t)
 
 (use-package display-line-numbers-mode
   :ensure nil

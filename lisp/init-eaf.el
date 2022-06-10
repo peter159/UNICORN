@@ -32,13 +32,14 @@
 (use-package eaf
   :load-path (lambda () (expand-file-name "site-lisp/emacs-application-framework" user-emacs-directory))
   :init
-  (setq eaf-python-command "/home/linyi/miniconda3/envs/eaf/bin/python")
+  ;; (setq eaf-python-command "/home/linyi/miniconda3/envs/eaf/bin/python")
   (let ((default-directory (expand-file-name "site-lisp/emacs-application-framework/app" user-emacs-directory)))
     (normal-top-level-add-subdirs-to-load-path))
   (require 'eaf)
   (require 'eaf-all-the-icons)
   (require 'eaf-browser)
   (require 'eaf-markdown-previewer)
+  (require 'eaf-pdf-viewer)
   (require 'eaf-evil)
   )
 
