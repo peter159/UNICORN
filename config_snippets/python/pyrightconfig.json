@@ -1,0 +1,6 @@
+{
+  "venvPath": "/home/linyi/miniconda3/envs",
+  "venv": "pyspark",
+  "pythonVersion": "3.9",
+  "typeCheckingMode": "off"
+}

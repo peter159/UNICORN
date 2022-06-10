@@ -1,0 +1,188 @@
+[toc]
+
+# UNICORN
+
+## ![Unicorn](./imgs/unicorn-w.png)
+
+**UNICORN is a emacs based programming editor with evil-mode and fully keyboard controller, trying to provide an immersive programming experience, enjoy it !**
+
+Note: strongly suggest for usage in pure Linux environment, or in windows WSL2 system, GUI system suggested, ubuntu system suggested
+
+```shell
+# start in GUI system, suggested
+emacs
+
+# start in TUI system
+emacs -nw
+```
+
+
+
+## 1. Prerequisites
+
+- install prebuild [emacs](https://www.gnu.org/software/emacs/) from snap, or build from [source](https://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Emacs.html), emacs 29.0 + suggested, proxy suggested if you are in china
+
+
+```shell
+# close ssr agent first!!!, recommend this way
+sudo add-apt-repository ppa:ubuntu-elisp/ppa
+sudo apt-get update
+sudo apt install emacs-snapshot
+
+# make sure git add proxy before installing, especially usefull for emacs quelpa mechanism
+git config --http.proxy http://127.0.0.1:1080
+git config --https.proxy https://127.0.0.1:1080
+
+# if needed to store user.name and password for convenient usage
+git config --global user.name xxx
+git config --global user.email xxx
+git config --global credential.helper store
+```
+
+- Unicorn requires fonts for better display
+  - [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono)
+  - [Fira Code](https://github.com/tonsky/FiraCode)
+  - [Fira Code Symbol](https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip)
+
+- global tools
+
+```shell
+# ripgrep, usefull when you want to lightening search anything projectively wide
+# make sure rg is in your system env
+sudo apt install ripgrep
+```
+
+- language supported
+  - Python packages suggested, if you work with python
+
+```shell
+pip install black \ # autoformat code
+			yapf \  # 
+			isort \ # 
+```
+
+- R language server suggested, if you work with R
+
+```shell
+# add Rterm to system path first and open R in terminal
+install.packages("devtools")
+devtools::install_github("REditorSupport/languageserver")")
+```
+
+- Markdown support
+
+```shell
+sudo apt install markdown
+```
+
+- C/C++ package suggested, if you work with C/C++
+
+```shell
+# sudo apt install g++ cmake
+```
+
+- nodejs packages suggested, this is important, as emacs language server use a lot of it
+
+```shell
+# install nvm, ref: https://github.com/nvm-sh/nvm#installing-and-updating
+# install node lastest version
+nvm install node
+
+# add sudo or change dir with chown -R if no permission
+npm install -g eslint_d prettier markdownlint-cli vmd
+
+# install formatter for markdown
+sudo npm install --global prettier @prettier/plugin-lua @prettier/plugin-php prettier-plugin-solidity prettier-plugin-toml
+```
+
+- vterm shell, if you want to integrate a better Linux shell to emacs
+  - only for \*nix system, refer [here](https://github.com/akermu/emacs-libvterm)
+
+```shell
+sudo apt install cmake
+sudo apt install libtool
+sudo apt install libtool-bin
+```
+
+- put `.zshenv` in home folder
+
+``` shell
+# put it in ~/.zshenv
+export WORKON_HOME='/home/{username}/miniconda/envs'
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
+```
+
+-- use mirror if you come across timeout error.
+
+
+
+## Install UNICORN
+
+- clone from git
+
+```shell
+git clone https://github.com/peter159/unicorn.git ~/.emacs.d
+```
+
+For server user, since emacs is running a deamon for server, make a short cut applying something like the follows to use it (change the path to your path). Look at [wiki](https://www.emacswiki.org/emacs/EmacsMsWindowsIntegration) to see the explanation of how emacsclient works
+
+- make shortcut for system
+
+```shell
+# add proxy to emacs
+vim ~/.emacs.d/init.el
+# find line 31, change global-httpproxy setting to yours
+;; set http proxy, not need when set `git config --global http.proxy' in terminal
+(defvar global-httpproxy "127.0.0.1:1008")
+(setq url-proxy-services `(("http" . , global-httpproxy)
+			   ("https" . ,global-httpproxy)
+			   ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
+
+
+# create a new shortcut(recommended)
+vim /usr/share/applications/emacs-server.desktop
+
+# modify a existing shortcut
+vim /snap/emacs/current/meta/gui/emacs.desktop
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=emacs-server
+Comment=Emacs IDE
+Exec=/usr/bin/emacsclient -cna emacs
+Icon=emacs  
+Terminal=false 
+StartupNotify=false
+Type=Application
+Categories=Development;TextEditor;
+```
+
+- fire it up, all emacs related necessary packages will be installed automatically, enjoy it !
+
+```shell
+> emacs
+```
+
+- issues
+  - if you come across symbol or fonts displaying issue, open emacs, run command M-x, all-the-icons-fonts-install 
+
+
+
+### KEYBOARD Control Shortcut
+
+I'm don't plan to add them one by one as brochure at least for now, but you can explore them yourself, by use [SPACE] keyborad
+
+
+
+## SNAPSHOT
+
+## ![snapshot](./imgs/snapshot.png)
+
+## ![screen2](./imgs/screenshort2.png)
+
+## ![screen3](./imgs/screenshort3.png)
+
+## Notes
+
+- tested in emacs 28.05, Ubuntu 20.04, 20210116
+- tested in emacs 27.1, windows 10, 20210117, can also download and use unicorn-windows repo as well
