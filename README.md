@@ -165,12 +165,19 @@ Categories=Development;TextEditor;
 
 - issues
   - if you come across symbol or fonts displaying issue, open emacs, run command M-x, all-the-icons-fonts-install 
+  - if you find vterm not compiling, go to ~/.emacs.d/elpa/vterm-20220429.21/build/ and run:
+
+	``` shell
+	cmake ..
+	make
+	```
 
 
 
-### KEYBOARD Control Shortcut
+### KEYBOARD Control Shortcut List
 
-I'm don't plan to add them one by one as brochure at least for now, but you can explore them yourself, by use [SPACE] keyborad
+I don't plan to add them one by one as brochure at least for now, but you can explore them yourself,
+by using [SPACE] keyboard. You can also read from source code ~/.emacs.d/lisp/leader-key-binding.el
 
 
 
