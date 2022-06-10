@@ -2,7 +2,7 @@
 
 # UNICORN
 
-## ![Unicorn](./imgs/unicorn-wlogo.png)
+## ![Unicorn](./imgs/unicorn.png)
 
 **UNICORN is a emacs based programming editor with evil-mode and fully keyboard controller, trying to provide an immersive programming experience, enjoy it !**
 
