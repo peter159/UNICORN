@@ -199,7 +199,7 @@
   :init
   (setq
    dashboard-banner-logo-title "[U N I C O R N] "
-   dashboard-startup-banner (expand-file-name "img/unicorn.png" user-emacs-directory)
+   dashboard-startup-banner (expand-file-name "imgs/unicorn.png" user-emacs-directory)
    dashboard-center-content nil
    dashboard-items '((recents . 10)
 		     (bookmarks . 5)

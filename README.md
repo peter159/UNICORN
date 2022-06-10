@@ -176,7 +176,7 @@ I'm don't plan to add them one by one as brochure at least for now, but you can 
 
 ## SNAPSHOT
 
-## ![snapshot](./imgs/snapshot.png)
+## ![snapshot](https://github.com/peter159/UNICORN/blob/main/imgs/unicorn-w.png?raw=true)
 
 ## ![screen2](./imgs/screenshort2.png)
 
