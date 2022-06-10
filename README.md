@@ -2,7 +2,7 @@
 
 # UNICORN
 
-## ![Unicorn](./imgs/unicorn-w.png)
+## ![Unicorn](./imgs/unicorn-wlogo.png)
 
 **UNICORN is a emacs based programming editor with evil-mode and fully keyboard controller, trying to provide an immersive programming experience, enjoy it !**
 
@@ -176,7 +176,7 @@ I'm don't plan to add them one by one as brochure at least for now, but you can 
 
 ## SNAPSHOT
 
-## ![snapshot](https://github.com/peter159/UNICORN/blob/main/imgs/unicorn-w.png?raw=true)
+## ![snapshot](./imgs/snapshot.png)
 
 ## ![screen2](./imgs/screenshort2.png)
 
