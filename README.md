@@ -10,10 +10,10 @@ Note: strongly suggest for usage in pure Linux environment, or in windows WSL2 s
 
 ```shell
 # start in GUI system, suggested
-emacs
+> emacs
 
 # start in TUI system
-emacs -nw
+> emacs -nw
 ```
 
 
