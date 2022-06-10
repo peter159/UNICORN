@@ -1,5 +1,3 @@
-[toc]
-
 # UNICORN
 
 ## ![Unicorn](./imgs/unicorn.png)
@@ -15,7 +13,6 @@ Note: strongly suggest for usage in pure Linux environment, or in windows WSL2 s
 # start in TUI system
 > emacs -nw
 ```
-
 
 
 ## 1. Prerequisites
@@ -44,7 +41,7 @@ git config --global credential.helper store
   - [Fira Code](https://github.com/tonsky/FiraCode)
   - [Fira Code Symbol](https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip)
 
-- global tools
+- global tools and frameworks
 
 ```shell
 # ripgrep, usefull when you want to lightening search anything projectively wide
