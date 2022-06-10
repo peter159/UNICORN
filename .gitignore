@@ -6,6 +6,8 @@ persp-confs/
 pyim/
 transient/
 url/
+site-lisp/emacs-application-framework/
+eaf/
 
 auto-save-list
 custom.el
