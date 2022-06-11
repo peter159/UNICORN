@@ -180,7 +180,7 @@ Categories=Development;TextEditor;
 ### KEYBOARD Control Shortcut List
 
 I don't plan to add them one by one as brochure at least for now, but you can explore them yourself,
-by using [**SPACE**] keyboard. You can also read from source code ~/.emacs.d/lisp/leader-key-binding.el
+by using [**SPACE**] keyboard. You can also read from source code `~/.emacs.d/lisp/leader-key-binding.el`
 
 
 
