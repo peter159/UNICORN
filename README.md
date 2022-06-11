@@ -2,9 +2,9 @@
 
 ## ![Unicorn](./imgs/unicorn.png)
 
-**UNICORN is a emacs based programming editor with evil-mode and fully keyboard controller, trying to provide an immersive programming experience, enjoy it !**
+**UNICORN is a emacs based programming editor with vim mode and fully keyboard controller, trying to provide an immersive programming experience, enjoy it !**
 
-Note: strongly suggest for usage in pure Linux environment, or in windows WSL2 system, GUI system suggested, ubuntu system suggested
+Note: strongly suggest for usage in a purly Linux environment, or in windows WSL system, ubuntu system with GUI suggested
 
 ```shell
 # start in GUI system, suggested
@@ -17,7 +17,7 @@ Note: strongly suggest for usage in pure Linux environment, or in windows WSL2 s
 
 ## 1. Prerequisites
 
-- install prebuild [emacs](https://www.gnu.org/software/emacs/) from snap, or build from [source](https://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Emacs.html), emacs 29.0 + suggested, proxy suggested if you are in china
+- install prebuild [emacs](https://www.gnu.org/software/emacs/) from snap, or build from [source](https://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Emacs.html), emacs 29.0 + suggested, proxy (SSR or Clash) suggested if you are in china
 
 
 ```shell
@@ -34,9 +34,10 @@ git config --https.proxy https://127.0.0.1:1080
 git config --global user.name xxx
 git config --global user.email xxx
 git config --global credential.helper store
+
 ```
 
-- Unicorn requires fonts for better display
+- Unicorn requires fonts for better UI display
   - [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono)
   - [Fira Code](https://github.com/tonsky/FiraCode)
   - [Fira Code Symbol](https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip)
@@ -76,6 +77,7 @@ sudo apt install markdown
 
 ```shell
 # sudo apt install g++ cmake
+# language server LSP will automatically install clangd later
 ```
 
 - nodejs packages suggested, this is important, as emacs language server use a lot of it
@@ -90,6 +92,10 @@ npm install -g eslint_d prettier markdownlint-cli vmd
 
 # install formatter for markdown
 sudo npm install --global prettier @prettier/plugin-lua @prettier/plugin-php prettier-plugin-solidity prettier-plugin-toml
+
+# install npm and set taobao proxy, install nodejs from here -> https://nodejs.org/en/
+npm install -g cnpm --registry=https://registry.npmmirror.com
+alias npm=cnpm
 ```
 
 - vterm shell, if you want to integrate a better Linux shell to emacs
@@ -174,7 +180,7 @@ Categories=Development;TextEditor;
 ### KEYBOARD Control Shortcut List
 
 I don't plan to add them one by one as brochure at least for now, but you can explore them yourself,
-by using [SPACE] keyboard. You can also read from source code ~/.emacs.d/lisp/leader-key-binding.el
+by using [**SPACE**] keyboard. You can also read from source code ~/.emacs.d/lisp/leader-key-binding.el
 
 
 
