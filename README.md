@@ -168,7 +168,7 @@ Categories=Development;TextEditor;
 
 - issues
   - if you come across symbol or fonts displaying issue, open emacs, run command M-x, all-the-icons-fonts-install 
-  - if you find vterm not compiling, go to ~/.emacs.d/elpa/vterm-20220429.21/build/ and run:
+  - if you find vterm not compiling, go to `~/.emacs.d/elpa/vterm-20220429.21/build/` and run:
 
 	``` shell
 	> cmake ..
