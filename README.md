@@ -22,18 +22,18 @@ Note: strongly suggest for usage in a purly Linux environment, or in windows WSL
 
 ```shell
 # close ssr agent first!!!, recommend this way
-sudo add-apt-repository ppa:ubuntu-elisp/ppa
-sudo apt-get update
-sudo apt install emacs-snapshot
+> sudo add-apt-repository ppa:ubuntu-elisp/ppa
+> sudo apt-get update
+> sudo apt install emacs-snapshot
 
 # make sure git add proxy before installing, especially usefull for emacs quelpa mechanism
-git config --http.proxy http://127.0.0.1:1080
-git config --https.proxy https://127.0.0.1:1080
+> git config --http.proxy http://127.0.0.1:1080
+> git config --https.proxy https://127.0.0.1:1080
 
 # if needed to store user.name and password for convenient usage
-git config --global user.name xxx
-git config --global user.email xxx
-git config --global credential.helper store
+> git config --global user.name xxx
+> git config --global user.email xxx
+> git config --global credential.helper store
 
 ```
 
@@ -47,14 +47,14 @@ git config --global credential.helper store
 ```shell
 # ripgrep, usefull when you want to lightening search anything projectively wide
 # make sure rg is in your system env
-sudo apt install ripgrep
+> sudo apt install ripgrep
 ```
 
 - language supported
   - Python packages suggested, if you work with python
 
 ```shell
-pip install black \ # autoformat code
+> pip install black \ # autoformat code
 			yapf \  # 
 			isort \ # 
 ```
@@ -70,7 +70,7 @@ devtools::install_github("REditorSupport/languageserver")")
 - Markdown support
 
 ```shell
-sudo apt install markdown
+> sudo apt install markdown
 ```
 
 - C/C++ package suggested, if you work with C/C++
@@ -85,26 +85,26 @@ sudo apt install markdown
 ```shell
 # install nvm, ref: https://github.com/nvm-sh/nvm#installing-and-updating
 # install node lastest version
-nvm install node
+> nvm install node
 
 # add sudo or change dir with chown -R if no permission
-npm install -g eslint_d prettier markdownlint-cli vmd
+> npm install -g eslint_d prettier markdownlint-cli vmd
 
 # install formatter for markdown
-sudo npm install --global prettier @prettier/plugin-lua @prettier/plugin-php prettier-plugin-solidity prettier-plugin-toml
+> sudo npm install --global prettier @prettier/plugin-lua @prettier/plugin-php prettier-plugin-solidity prettier-plugin-toml
 
 # install npm and set taobao proxy, install nodejs from here -> https://nodejs.org/en/
-npm install -g cnpm --registry=https://registry.npmmirror.com
-alias npm=cnpm
+> npm install -g cnpm --registry=https://registry.npmmirror.com
+> echo "alias npm=cnpm" >> ~/.zshrc
 ```
 
 - vterm shell, if you want to integrate a better Linux shell to emacs
   - only for \*nix system, refer [here](https://github.com/akermu/emacs-libvterm)
 
 ```shell
-sudo apt install cmake
-sudo apt install libtool
-sudo apt install libtool-bin
+> sudo apt install cmake
+> sudo apt install libtool
+> sudo apt install libtool-bin
 ```
 
 - put `.zshenv` in home folder
@@ -124,7 +124,7 @@ export WORKON_HOME='/home/{username}/miniconda/envs'
 - clone from git
 
 ```shell
-git clone https://github.com/peter159/unicorn.git ~/.emacs.d
+> git clone https://github.com/peter159/unicorn.git ~/.emacs.d
 ```
 
 For server user, since emacs is running a deamon for server, make a short cut applying something like the follows to use it (change the path to your path). Look at [wiki](https://www.emacswiki.org/emacs/EmacsMsWindowsIntegration) to see the explanation of how emacsclient works
@@ -133,7 +133,7 @@ For server user, since emacs is running a deamon for server, make a short cut ap
 
 ```shell
 # add proxy to emacs
-vim ~/.emacs.d/init.el
+> vim ~/.emacs.d/init.el
 # find line 31, change global-httpproxy setting to yours
 ;; set http proxy, not need when set `git config --global http.proxy' in terminal
 (defvar global-httpproxy "127.0.0.1:1008")
@@ -143,10 +143,10 @@ vim ~/.emacs.d/init.el
 
 
 # create a new shortcut(recommended)
-vim /usr/share/applications/emacs-server.desktop
+> vim /usr/share/applications/emacs-server.desktop
 
 # modify a existing shortcut
-vim /snap/emacs/current/meta/gui/emacs.desktop
+> vim /snap/emacs/current/meta/gui/emacs.desktop
 
 [Desktop Entry]
 Encoding=UTF-8
