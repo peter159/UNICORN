@@ -84,7 +84,11 @@ devtools::install_github("REditorSupport/languageserver")")
 
 ``` shell
 # suggest you have python3 installed in you system environment
+<!-- language server -->
 pip install cmake-language-server
+
+<!-- formatter -->
+pip install cmake-format
 ```
 
 - nodejs packages suggested, this is important, as emacs language server use a lot of it
