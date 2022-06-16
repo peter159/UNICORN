@@ -80,6 +80,13 @@ devtools::install_github("REditorSupport/languageserver")")
 # language server LSP will automatically install clangd later
 ```
 
+- CMAKE support
+
+``` shell
+# suggest you have python3 installed in you system environment
+pip install cmake-language-server
+```
+
 - nodejs packages suggested, this is important, as emacs language server use a lot of it
 
 ```shell
