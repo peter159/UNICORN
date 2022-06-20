@@ -24,6 +24,7 @@
 ;; debug usage
 ;; C-c C-c g++ -g -o test myproj.cpp
 ;; C-c C-b gdb -i=mi test
+;; https://linuxhint.com/c_emacs_configuration/ FIXME config this when available
 
 ;; 
 
