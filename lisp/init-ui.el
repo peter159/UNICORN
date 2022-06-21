@@ -105,6 +105,27 @@
 (use-package spacemacs-theme
   :ensure t)
 
+(use-package modus-themes
+  :ensure nil
+  :init
+  (setq
+   modus-themes-bold-constructs t
+   modus-themes-italic-constructs t
+   modus-themes-org-blocks 'tinted-background
+   ;; modus-themes-syntax '(yellow-comments green-strings)
+
+   modus-themes-paren-match '(bold intense)
+   modus-themes-mode-line '(accented borderless (height . 0.9))
+   modus-themes-region '(bg-only)
+   modus-themes-completions '((matches . (extrabold))
+                              (selection . (semibold accented))
+                              (popup . (accented intense)))
+   modus-themes-headings ; this is an alist: read the manual or its doc string
+   '((1 . (rainbow overline background 1.4))
+     (2 . (rainbow background 1.3))
+     (3 . (rainbow bold 1.2))
+     (t . (semilight 1.1)))))
+
 (use-package doom-themes
   :ensure t
   :config
