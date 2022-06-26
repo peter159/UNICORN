@@ -21,12 +21,16 @@ Note: strongly suggest for usage in a purly Linux environment, or in windows WSL
 
 - OR build and compile from source, tested in windows 11 WSL[ubuntu]
 
-``` shell
-# source from github
+```shell
+# close ssr agent first!!!, recommend this way, installed pre-compiled
+> sudo add-apt-repository ppa:ubuntu-elisp/ppa
+> sudo apt-get update
+> sudo apt install emacs-snapshot
+
+<!-- start -->
+# build from source
 git clone https://github.com/emacs-mirror/emacs.git
-
 sudo apt install build-essential libgtk-3-dev libgnutls28-dev libtiff5-dev libgif-dev libjpeg-dev libpng-dev libxpm-dev libncurses-dev texinfo
-
 sudo apt install libjansson4 libjansson-dev
 # Native Complilation
 sudo apt install libgccjit0 libgccjit-10-dev gcc-10 g++-10
@@ -35,13 +39,7 @@ cd emacs
 ./autogen.sh
 ./configure --with-native-compilation --with-json --with-pgtk --with-modules CFLAGS="-O2 -mtune=native -march=native -fomit-frame-pointer" prefix=/usr/local
     make -j$(nproc) NATIVE_FULL_AOT=1
-```
-
-```shell
-# close ssr agent first!!!, recommend this way
-> sudo add-apt-repository ppa:ubuntu-elisp/ppa
-> sudo apt-get update
-> sudo apt install emacs-snapshot
+<!-- end -->
 
 # make sure git add proxy before installing, especially usefull for emacs quelpa mechanism
 > git config --http.proxy http://127.0.0.1:1080
