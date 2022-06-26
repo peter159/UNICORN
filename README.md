@@ -19,6 +19,23 @@ Note: strongly suggest for usage in a purly Linux environment, or in windows WSL
 
 - install prebuild [emacs](https://www.gnu.org/software/emacs/) from snap, or build from [source](https://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Emacs.html), emacs 29.0 + suggested, proxy (SSR or Clash) suggested if you are in china
 
+- OR build and compile from source, tested in windows 11 WSL[ubuntu]
+
+``` shell
+# source from github
+git clone https://github.com/emacs-mirror/emacs.git
+
+sudo apt install build-essential libgtk-3-dev libgnutls28-dev libtiff5-dev libgif-dev libjpeg-dev libpng-dev libxpm-dev libncurses-dev texinfo
+
+sudo apt install libjansson4 libjansson-dev
+# Native Complilation
+sudo apt install libgccjit0 libgccjit-10-dev gcc-10 g++-10
+export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
+cd emacs
+./autogen.sh
+./configure --with-native-compilation --with-json --with-pgtk --with-modules CFLAGS="-O2 -mtune=native -march=native -fomit-frame-pointer" prefix=/usr/local
+    make -j$(nproc) NATIVE_FULL_AOT=1
+```
 
 ```shell
 # close ssr agent first!!!, recommend this way
@@ -51,7 +68,7 @@ Note: strongly suggest for usage in a purly Linux environment, or in windows WSL
 ```
 
 - language supported
-  - Python packages suggested, if you work with python
+- Python packages suggested, if you work with python
 
 ```shell
 > pip install black \ # autoformat code
