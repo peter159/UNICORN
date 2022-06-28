@@ -26,9 +26,6 @@
 
 (mark-time-here)
 
-(setq gc-cons-threshold 100000000)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
-
 (use-package lsp-mode
   :ensure t
   :diminish
@@ -40,7 +37,10 @@
 	     lsp-ui-doc-enable
              lsp-install-server)
   :init
-  (setq read-process-output-max (* 1024 1024)) ; @see https://github.com/emacs-lsp/lsp-mode#performance
+  (setq gc-cons-threshold 100000000
+	read-process-output-max (* 1024 1024) ;; @see https://github.com/emacs-lsp/lsp-mode#performance
+	lsp-use-plists t
+	lsp-log-io nil)			
   (setq lsp-keymap-prefix "C-c l"
 	lsp-auto-guess-root nil
 	lsp-keep-workspace-alive nil
