@@ -39,7 +39,7 @@
   :init
   (setq gc-cons-threshold 100000000
 	read-process-output-max (* 1024 1024) ;; @see https://github.com/emacs-lsp/lsp-mode#performance
-	lsp-use-plists t
+	;; lsp-use-plists t		      ;https://emacs-lsp.github.io/lsp-mode/page/performance/
 	lsp-log-io nil)			
   (setq lsp-keymap-prefix "C-c l"
 	lsp-auto-guess-root nil
