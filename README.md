@@ -133,12 +133,22 @@ pip install cmake-format
 > sudo apt install libtool-bin
 ```
 
-- put `.zshenv` in home folder
+- put `.zshenv` in home folder, do not forget to add to `exec-path-from-shell-variables`
 
 ``` shell
 # put it in ~/.zshenv
-export WORKON_HOME='/home/{username}/miniconda/envs'
+export WORKON_HOME='/home/user/miniconda3/envs'
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
+
+# R env
+# export R_LIBS_USER="/mnt/UbuData/Rpkgs_nonshiny"
+
+# GOlang
+GO_HOME=/home/linyi/go
+export PATH=$GO_HOME/bin:$PATH
+
+# better performance for lsp
+export LSP_USE_PLISTS=true
 ```
 
 -- use mirror if you come across timeout error.
