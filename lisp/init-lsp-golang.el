@@ -33,7 +33,7 @@
     (pop-to-buffer (current-buffer) t))
   (godoc-at-point))
 
-;; Golang
+;; Golang with lsp
 (use-package go-mode
   :ensure t
   :init

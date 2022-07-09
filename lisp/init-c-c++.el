@@ -32,44 +32,6 @@
 
 (mark-time-here)
 
-;; build ccls from source code: https://github.com/MaskRay/ccls/wiki/Build
-;; install llvm-10 or above
-;; Add the following code in your ~/.profile file and reboot
-;; LLVM 10.0.0 is installed in /home/software/llvm
-;; LLVM_HOME=/home/software/llvm
-;; export PATH=$LLVM_HOME/bin:$PATH
-;; export LD_LIBRARY_PATH=$LLVM_HOME/lib:$LD_LIBRARY_PATH
-(use-package cc-mode
-  :ensure t
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist
-	       `("\\.h\\'" . ,unicorn-default-mode-for-headers))
-  (setq gdb-many-windows t
-	gdb-show-main t)
-
-  ;; ;; C/C++/Objective-C support
-  ;; (use-package ccls
-  ;;   :defines projectile-project-root-files-top-down-recurring
-  ;;   :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls)))
-  ;;   :init
-  ;;   (setq ccls-executable (file-truename "~/ccls/Release/ccls"))
-  ;;   :config
-  ;;   (with-eval-after-load 'projectile
-  ;;     (setq projectile-project-root-files-top-down-recurring
-  ;;           (append '("compile_commands.json" ".ccls")
-  ;;                   projectile-project-root-files-top-down-recurring))))
-  :hook ((c-mode c++-mode) . (lambda ()
-			       "Format and add/delete imports."
-			       (add-hook 'before-save-hook #'lsp-format-buffer t t)
-			       (add-hook 'before-save-hook #'lsp-organize-imports t t)
-			       ;; enable lsp
-			       (lsp-deferred)))
-  :config
-  (require 'compile)
-  (define-key c++-mode-map (kbd "C-c C-c") 'compile)
-  (define-key c++-mode-map (kbd "C-c C-b") 'gdb)
-  )
 
 (use-package smart-semicolon
   :ensure t

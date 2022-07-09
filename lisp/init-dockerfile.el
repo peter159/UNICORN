@@ -27,10 +27,6 @@
 
 (mark-time-here)
 
-(use-package dockerfile-mode
-  :ensure t
-  :hook (dockerfile-mode . (lambda()
-			     (lsp-deferred))))
 
 (provide 'init-dockerfile)
 (message "init-dockerfile loaded in '%.2f' seconds ..." (get-time-diff time-marked))

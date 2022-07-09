@@ -100,7 +100,7 @@
 (require 'init-lsp)
 ;; (require 'init-lsp-bridge)
 (require 'init-lsp-python)
-(require 'init-lsp-golang)
+;; (require 'init-lsp-golang)
 (require 'init-lsp-ess)
 (require 'init-elisp)
 (require 'init-c-c++)

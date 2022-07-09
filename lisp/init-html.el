@@ -28,30 +28,6 @@
 
 (mark-time-here)
 
-(use-package web-mode
-  :ensure t
-  :mode ("\\.html\\'" "\\.vue\\'")
-  :hook
-  (html-mode . web-mode)
-  ;; (web-mode . electric-spacing-mode)
-  (web-mode . (lambda()
-		(lsp-deferred)))
-  :config
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-enable-current-element-highlight t)
-  (setq web-mode-enable-current-column-highlight t)
-  (setq web-mode-enable-css-colorization t)
-  ;; (set-face-attribute 'web-mode-html-tag-face nil :foreground "royalblue")
-  ;; (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "powderblue")
-  ;; (set-face-attribute 'web-mode-doctype-face nil :foreground "lightskyblue")
-  (setq web-mode-content-types-alist
-        '(("vue" . "\\.vue\\'")))
-  (define-key web-mode-map (kbd "M-n") 'web-mode-navigate)
-  (define-key web-mode-map (kbd "<tab>") 'web-mode-fold-or-unfold)
-  (define-key web-mode-map (kbd "M-o") 'browse-url-of-file)
-  )
 
 (use-package emmet-mode
   :ensure t

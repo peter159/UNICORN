@@ -65,16 +65,13 @@
 	 )
   :bind (:map lsp-mode-map
               ("C-c C-d" . lsp-describe-thing-at-point)
-	      ;; ("C-M-k" . 'company-files)
-	      ;; ("M-f" . 'lsp-format-region)
-	      ;; ("M-S-f" . 'lsp-format-buffer)
               ([remap xref-find-definitions] . lsp-find-definition)
               ([remap xref-find-references] . lsp-find-references))
   :config
   (with-eval-after-load 'lsp-mode
     (defun unicorn/lsp-mode-setup-completion()
       (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-	    '(flex)))			; Configure flex
+	    '(flex)))			 ; Configure flex
     (setq lsp-completion-provider :none)	;we use Corful!
     (add-hook 'lsp-completion-mode-hook #'unicorn/lsp-mode-setup-completion)
     )
@@ -109,11 +106,6 @@
   :ensure t
   :commands lsp-ui-doc-mode)
 
-;; ;; if you are ivy user
-;; (use-package lsp-ivy
-;;   :ensure t
-;;   :commands lsp-ivy-workspace-symbol)
-
 (use-package consult-lsp
   :ensure t)
 
@@ -142,16 +134,99 @@
   (global-set-key (kbd "M-f") 'format-all-buffer)
   )
 
-;; ;; optionally if you want to use debugger
-;; (use-package dap-mode
-;;   :ensure t)
-;; ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-
 ;; optional if you want which-key integration
 (use-package which-key
   :ensure t
   :config
   (which-key-mode))
+
+
+;; use for specified language
+;; python with lsp mode
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+			 (require 'lsp-pyright)
+			 (lsp-deferred)))
+  :init
+  (setq lsp-pyright-typechecking-mode "basic"
+	lsp-pyright-venv-path (file-truename "~/miniconda3/envs")
+	))
+
+
+;; c/c++ with lsp
+(use-package cc-mode
+  :ensure t
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist
+	       `("\\.h\\'" . ,unicorn-default-mode-for-headers))
+  (setq gdb-many-windows t
+	gdb-show-main t)
+  :hook ((c-mode c++-mode) . (lambda ()
+			       "Format and add/delete imports."
+			       (add-hook 'before-save-hook #'lsp-format-buffer t t)
+			       (add-hook 'before-save-hook #'lsp-organize-imports t t)
+			       ;; enable lsp
+			       (lsp-deferred)))
+  :config
+  (require 'compile)
+  (define-key c++-mode-map (kbd "C-c C-c") 'compile)
+  (define-key c++-mode-map (kbd "C-c C-b") 'gdb)
+  )
+
+;; java with lsp-mode
+(use-package lsp-java
+  :hook (java-mode . (lambda ()
+		       (require 'lsp-java)
+		       (lsp-deferred)))
+  :init
+  (setq lsp-java-import-maven-enabled t
+	lsp-java-implementations-code-lens-enabled t
+	lsp-java-save-actions-organize-imports t
+	;; latest jdtls requires java >= 11 to work
+	lsp-java-java-path "/opt/jdk11/bin/java"
+	lsp-java-vmargs '("-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx6G" "-Xms100m")
+	;; Runtime name must be one of: “J2SE-1.5”, “JavaSE-1.6”, “JavaSE-1.7”, “JavaSE-1.8” etc
+	;; lsp-java-configuration-runtimes '[(:name "JavaSE-1.8"
+	;; 				   :path "/opt/jdk/")
+	;; 				  (:name "JavaSE-11"
+	;; 				   :path "/opt/jdk11/"
+	;; :default t)]
+	lsp-java-folding-range-enabled t)
+  )
+
+;; docker with lsp-mode
+(use-package dockerfile-mode
+  :ensure t
+  :hook (dockerfile-mode . (lambda()
+			     (lsp-deferred))))
+
+;; web with lsp-mode
+(use-package web-mode
+  :ensure t
+  :mode ("\\.html\\'" "\\.vue\\'")
+  :hook
+  (html-mode . web-mode)
+  ;; (web-mode . electric-spacing-mode)
+  (web-mode . (lambda()
+		(lsp-deferred)))
+  :config
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-enable-current-element-highlight t)
+  (setq web-mode-enable-current-column-highlight t)
+  (setq web-mode-enable-css-colorization t)
+  ;; (set-face-attribute 'web-mode-html-tag-face nil :foreground "royalblue")
+  ;; (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "powderblue")
+  ;; (set-face-attribute 'web-mode-doctype-face nil :foreground "lightskyblue")
+  (setq web-mode-content-types-alist
+        '(("vue" . "\\.vue\\'")))
+  (define-key web-mode-map (kbd "M-n") 'web-mode-navigate)
+  (define-key web-mode-map (kbd "<tab>") 'web-mode-fold-or-unfold)
+  (define-key web-mode-map (kbd "M-o") 'browse-url-of-file)
+  )
 
 (provide 'init-lsp)
 (message "init-lsp loaded in '%.2f' seconds ..." (get-time-diff time-marked))
