@@ -55,44 +55,40 @@
               orderless-style-dispatchers nil)
   (add-hook 'orderless-style-dispatchers #'nasy/orderless-dispatch-flex-first nil 'local))
 
-;; use corfu instead
-(when (display-graphic-p)
-  (use-package all-the-icons :ensure t :if (display-graphic-p))
-
-  (use-package corfu
-    :ensure t
-    :init
-    (setq corfu-cycle t
-          corfu-auto t
-          corfu-quit-at-boundary t
-          corfu-quit-no-match t
-          corfu-preview-current nil
-	  corfu-echo-documentation nil
-          corfu-preselect-first t
-          corfu-auto-delay 0.1
-          corfu-auto-prefix 1)
-    (global-corfu-mode))
-
-  (use-package kind-all-the-icons
-    :ensure nil				;already in site-list
-    :init
-    ;; (require 'all-the-icons)
-    (require 'kind-all-the-icons)
-    (add-to-list 'corfu-margin-formatters #'kind-all-the-icons-margin-formatter))
-
-  ;; ;; Use dabbrev with Corfu!
-  (use-package dabbrev
-    ;; Swap M-/ and C-M-/
-    :ensure t
-    :bind (("M-/" . dabbrev-completion)
-           ("C-M-/" . dabbrev-expand)))
-
-  (use-package cape
-    :ensure t
-    :bind (("C-M-o"   . cape-file))
-    :init
-    (add-to-list 'completion-at-point-functions #'cape-file)
-    (add-to-list 'completion-at-point-functions #'cape-dabbrev)))
+;; ;; use corfu instead
+;; (when (display-graphic-p)
+;;   (use-package all-the-icons :ensure t :if (display-graphic-p))
+;;   (use-package corfu
+;;     :ensure t
+;;     :init
+;;     (setq corfu-cycle t
+;;           corfu-auto t
+;;           corfu-quit-at-boundary t
+;;           corfu-quit-no-match t
+;;           corfu-preview-current nil
+;; 	  corfu-echo-documentation nil
+;;           corfu-preselect-first t
+;;           corfu-auto-delay 0.1
+;;           corfu-auto-prefix 1)
+;;     (global-corfu-mode))
+;;   (use-package kind-all-the-icons
+;;     :ensure nil				;already in site-list
+;;     :init
+;;     ;; (require 'all-the-icons)
+;;     (require 'kind-all-the-icons)
+;;     (add-to-list 'corfu-margin-formatters #'kind-all-the-icons-margin-formatter))
+;;   ;; ;; Use dabbrev with Corfu!
+;;   (use-package dabbrev
+;;     ;; Swap M-/ and C-M-/
+;;     :ensure t
+;;     :bind (("M-/" . dabbrev-completion)
+;;            ("C-M-/" . dabbrev-expand)))
+;;   (use-package cape
+;;     :ensure t
+;;     :bind (("C-M-o"   . cape-file))
+;;     :init
+;;     (add-to-list 'completion-at-point-functions #'cape-file)
+;;     (add-to-list 'completion-at-point-functions #'cape-dabbrev)))
 
 (provide 'init-corfu)
 (message "init-corfu loaded in '%.2f' seconds" (get-time-diff time-marked))

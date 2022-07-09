@@ -27,6 +27,8 @@
 (defvar unicorn-evil-major-leader-insert-default-key "M-m"
   "Evil leader key in evil insert mode.")
 
+(defvar unicorn-lsp-client-mode '(lsp-bridge-mode))
+
 (defvar unicorn-lsp-active-modes '(
 				   c-mode
 				   c++-mode

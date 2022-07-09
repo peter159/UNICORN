@@ -26,220 +26,70 @@
 
 (mark-time-here)
 
-;; Python Mode
 ;; Install:
 ;;   pip install yapf
 ;;   pip install isort
 ;;   pip install autoflake
-
-(defun unicorn/pyenv-executable-find (command)
-  "Find executable taking pyenv shims into account.
-If the executable is a system executable and not in the same path
-as the pyenv version then also return nil. This works around https://github.com/pyenv/pyenv-which-ext
-"
-  (if (executable-find "pyenv")
-      (progn
-        (let ((pyenv-string (shell-command-to-string (concat "pyenv which " command)))
-              (pyenv-version-names (split-string (string-trim (shell-command-to-string "pyenv version-name")) ":"))
-              (executable nil)
-              (i 0))
-          (if (not (string-match "not found" pyenv-string))
-              (while (and (not executable)
-                          (< i (length pyenv-version-names)))
-                (if (string-match (elt pyenv-version-names i) (string-trim pyenv-string))
-                    (setq executable (string-trim pyenv-string)))
-                (if (string-match (elt pyenv-version-names i) "system")
-                    (setq executable (string-trim (executable-find command))))
-                (setq i (1+ i))))
-          executable))
-    (executable-find command)))
-
-(defun unicorn/python-execute-file (arg)
-  "Execute a python script in a shell."
-  (interactive "P")
-  ;; set compile command to buffer-file-name
-  ;; universal argument put compile buffer in comint mode
-  (let ((universal-argument t)
-        (compile-command (format "%s %s"
-                                 (unicorn/pyenv-executable-find python-shell-interpreter)
-                                 (shell-quote-argument (file-name-nondirectory buffer-file-name)))))
-    (if arg
-        (call-interactively 'compile)
-      (compile compile-command t)
-      (with-current-buffer (get-buffer "*compilation*")
-        (inferior-python-mode)))))
-
-(defun unicorn/python-highlight-breakpoint ()
-  "highlight a break point"
-  (interactive)
-  (highlight-lines-matching-regexp "^[ ]*__import__(\"ipdb\").set_trace()" 'hi-salmon)
-  (highlight-lines-matching-regexp "^[ ]*import ipdb" 'hi-salmon)
-  (highlight-lines-matching-regexp "^[ ]*ipdb.set_trace()" 'hi-salmon))
-
-(defun unicorn/python-insert-breakpoint ()
-  "Add a break point, highlight it."
-  (interactive)
-  ;; (let ((trace  "import ipdb; ipdb.set_trace() # XXX BREAKPOINT")
-  ;; ref: https://github.com/psf/black/issues/790
-  (let ((trace  "__import__(\"ipdb\").set_trace()  # FIXME BREAKPOINT")
-	(line (thing-at-point 'line)))
-    (if (and line (string-match trace line))
-	(kill-whole-line)
-      (progn
-	(back-to-indentation)
-	(insert trace)
-	(insert "\n")
-	(python-indent-line)
-	(unicorn/python-highlight-breakpoint)))))
-
-(defun unicorn/python-delete-breakpoint ()
-  "delete break point"
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (flush-lines "^[ ]*__import__(\"ipdb\").set_trace()")
-    (flush-lines "^[ ]*import ipdb[ ]*ipdb.set_trace()")
-    (flush-lines "^[ ]*import ipdb")
-    (flush-lines "^[ ]*ipdb.set_trace()")))
-
-(defun unicorn/pyright-setup-project-config()
-  "setup config env for project root"
-  (interactive)
-  (shell-command "cp ~/.emacs.d/config_snippets/python/pyrightconfig.json .")
-  (shell-command "touch .projectile")
-  ;; (shell-command "touch .env")
-  )
-
-(defun unicorn/pyright-delete-project-config()
-  "delete project config file"
-  (interactive)
-  (shell-command "rm pyrightconfig.json")
-  (shell-command "rm .projectile")
-  ;; (shell-command "rm .env")
-  )
-
-(defun unicorn/insert_packaging_skeleton()
-  "setup config env for project root"
-  (interactive)
-  (shell-command "mkdir -p src")
-  (shell-command "cp ~/.emacs.d/config_snippets/python/cythonize_package.py ./src/")
-  (shell-command "cp ~/.emacs.d/config_snippets/python/LICENSE .")
-  (shell-command "cp ~/.emacs.d/config_snippets/python/pyproject.toml .")
-  (shell-command "cp ~/.emacs.d/config_snippets/python/MANIFEST.in .")
-  (shell-command "cp ~/.emacs.d/config_snippets/python/setup.cfg .")
-  (shell-command "cp ~/.emacs.d/config_snippets/python/wheelbuilder.sh .")
-  )
-
 (use-package python
   :ensure nil
+  :hook
+  ((python-mode . (lambda ()
+		            (setq-local flycheck-checkers '(python-pylint))
+		            ;; (setq-local python-mode t)
+                    (pyvenv-tracking-mode 1)
+		            (pyvenv-mode 1)))
+   (inferior-python-mode . (lambda ()
+			                 (process-query-on-exit-flag
+			                  (get-process "Python")))))
   :init
   ;; Disable readline based native completion
   (setq python-shell-completion-native-enable nil)
-  (setq python-indent-guess-indent-offset-verbose nil)
-  :hook
-  ((python-mode . (lambda ()
-		    (setq-local flycheck-checkers '(python-pylint))
-		    (pyvenv-tracking-mode 1) ;autoupdate python venv when switching proj
-		    (pyvenv-mode 1)))
-   (inferior-python-mode . (lambda ()
-			     (process-query-on-exit-flag
-			      (get-process "Python")))))
+
   :config
   ;; Env vars
   (with-eval-after-load 'exec-path-from-shell
     (exec-path-from-shell-copy-env "PYTHONPATH"))
-  ;; Default to Python 3. Prefer the versioned Python binaries since some
-  ;; systems stupidly make the unversioned one point at Python 2.
-  (when (and (executable-find "python")
-             (string= python-shell-interpreter "python"))
-    (setq python-shell-interpreter "python"))
-  (define-key python-mode-map (kbd "M--") #'(lambda()(interactive)(insert " -> ")))
-  (define-key inferior-python-mode-map (kbd "C-n") 'comint-next-input)
-  (define-key inferior-python-mode-map (kbd "<up>") 'comint-next-input)
-  (define-key inferior-python-mode-map (kbd "C-p") 'comint-previous-input)
-  (define-key inferior-python-mode-map (kbd "<down>") 'comint-previous-input)
-  (define-key inferior-python-mode-map (kbd "<C-k>") 'comint-kill-input)
-  (define-key inferior-python-mode-map (kbd "C-r") 'comint-history-isearch-backward)
-  (define-key python-mode-map (kbd "C-c C-b") 'unicorn/python-execute-file))
 
-;; (use-package py-isort :ensure t)
+  (define-key inferior-python-mode-map (kbd "C-j") 'comint-next-input)
+  (define-key inferior-python-mode-map (kbd "<up>") 'comint-next-input)
+  (define-key inferior-python-mode-map (kbd "C-k") 'comint-previous-input)
+  (define-key inferior-python-mode-map (kbd "<down>") 'comint-previous-input)
+  (define-key inferior-python-mode-map
+    (kbd "C-r") 'comint-history-isearch-backward))
+
+(use-package py-isort
+  :ensure t)
 
 (use-package pyvenv
   :ensure t
   :preface
-  ;; autoload virtual environment if project_root/pyrightconfig.json file exists
-  ;; use unicorn/pyright-setup-project-config to init the skeleton
-  (defun pyvenv-autoload ()
+  ;; autoload virtual environment if project_root/pyrightconfig.json file exists,
+  (defun unicorn/pyvenv-pyright-autoload ()
     (require 'projectile)
     (require 'json)
     (let* ((pdir (projectile-project-root))
-	   (pfile (concat pdir "pyrightconfig.json"))
-	   (json-object-type 'hash-table)
-	   (json-array-type 'string)
-	   (json-key-type 'string))
-      (if (file-exists-p pfile)
-	  (progn
-	    (setq-local venv-name (gethash "venv" (json-read-file pfile)))
-	    (pyvenv-workon venv-name))
-	)
-      )
-    ;; (let* ((pdir (projectile-project-root)) (pfile (concat pdir ".projectile")))
-    ;;   (if (file-exists-p pfile)
-    ;;       (pyvenv-workon (with-temp-buffer
-    ;;                        (insert-file-contents pfile)
-    ;;                        (nth 0 (split-string (buffer-string))))))
-    ;;   )
-    )
-  :hook (python-mode . pyvenv-autoload)
-  )
+           (pfile (concat pdir "pyrightconfig.json"))
+           (json-object-type 'hash-table)
+           (json-array-type 'string)
+           (json-key-type 'string))
+      (when (file-exists-p pfile)
+        (setq-local pyvenv-workon (gethash "venv" (json-read-file pfile)))
+        (pyvenv-workon pyvenv-workon)
+        (if (equal unicorn-lsp-client-mode 'lsp-mode)
+            (lsp-deferred))
+        )))
+  :hook (python-mode . unicorn/pyvenv-pyright-autoload))
 
-;; (use-package pipenv
-;;   :ensure t
-;;   :commands (pipenv-activate
-;;              pipenv-deactivate
-;;              pipenv-shell
-;;              pipenv-open
-;;              pipenv-install
-;;              pipenv-uninstall))
-;; (use-package virtualenvwrapper :ensure t)
+(use-package virtualenvwrapper
+  :ensure t)
 
-;; ;; Format using YAPF
-;; ;; Install: pip install yapf
-;; (use-package yapfify
-;;   :ensure t
-;;   :diminish yapf-mode
-;;   :hook (python-mode . yapf-mode))
+(use-package yapfify
+  :ensure t
+  :diminish yapf-mode
+  :hook (python-mode . yapf-mode))
 
-(if (member 'python-mode unicorn-lsp-active-modes)
-    (progn
-      (use-package lsp-pyright
-	:ensure t
-	:hook (python-mode . (lambda ()
-			       (require 'lsp-pyright)
-			       (lsp-deferred)))
-	:init
-	(setq lsp-pyright-typechecking-mode "basic"
-	      lsp-pyright-venv-path (file-truename "~/miniconda3/envs")
-	      )))
-  (progn
-    (use-package anaconda-mode
-      :ensure t
-      :defines anaconda-mode-localhost-address
-      :diminish anaconda-mode
-      :hook ((python-mode . anaconda-mode)
-	     (python-mode . anaconda-eldoc-mode))
-      :config
-      ;; WORKAROUND: https://github.com/proofit404/anaconda-mode#faq
-      (setq anaconda-mode-localhost-address "localhost"))
-    (use-package company-anaconda
-      :ensure t
-      :after company
-      :defines company-backends
-      :init (cl-pushnew 'company-anaconda company-backends)
-      :config
-      (evil-define-minor-mode-key 'normal 'anaconda-mode (kbd "C-M-i") 'company-anaconda)
-      (evil-define-minor-mode-key 'insert 'anaconda-mode (kbd "C-M-i") 'company-anaconda))))
-;; (message "not ready for anaconda"))
+(use-package pip-requirements
+  :ensure t)
 
 (provide 'init-lsp-python)
 (message "init-python loaded in '%.2f' seconds ..." (get-time-diff time-marked))

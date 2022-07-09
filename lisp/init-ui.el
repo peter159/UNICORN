@@ -150,7 +150,7 @@
 ;; (load-theme 'doom-acario-light t)
 ;; (load-theme 'doom-gruvbox-light t)
 ;; (load-theme 'doom-dracula t)
-(load-theme 'modus-vivendi t)
+(load-theme 'modus-operandi t)
 
 (use-package display-line-numbers-mode
   :ensure nil

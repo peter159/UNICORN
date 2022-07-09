@@ -26,84 +26,63 @@
 
 (mark-time-here)
 
-(setq gc-cons-threshold 100000000)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(use-package dumb-jump)
 
-(add-to-list 'load-path "<path-to-lsp-bridge>")
+;;; pip install epc
+(use-package lsp-bridge
+  :quelpa (lsp-bridge :fetcher github
+  		              :repo "manateelazycat/lsp-bridge"
+  		              :files ("*"))
+  :preface
+  ;; 融合 `lsp-bridge' `find-function' 以及 `dumb-jump' 的智能跳转
+  (defun unicorn/lsp-bridge-jump ()
+    (interactive)
+    (cond
+     ((eq major-mode 'emacs-lisp-mode)
+      (evil-goto-definition))
+     ((eq major-mode 'org-mode)
+      (org-agenda-open-link))
+     (lsp-bridge-mode
+      (lsp-bridge-find-def))
+     (t
+      (require 'dumb-jump)
+      (dumb-jump-go))))
 
-(require 'lsp-bridge)             ;; load lsp-bridge
-(global-corfu-mode)               ;; use corfu as completion ui
+  (defun unicorn/lsp-bridge-jump-back ()
+    (interactive)
+    (cond
+     ((member major-mode unicorn-lsp-active-modes)
+      (lsp-bridge-return-from-def))
+     (t
+      (require 'dumb-jump)
+      (dumb-jump-back))))
 
-(require 'lsp-bridge-orderless)   ;; make lsp-bridge support fuzzy match, optional
-(require 'lsp-bridge-icon)        ;; show icon for completion items, optional
-
-;; Enable auto completion in elisp mode.
-(dolist (hook (list
-               'emacs-lisp-mode-hook
-               ))
-  (add-hook hook (lambda ()
-                   (setq-local corfu-auto t)
-                   )))
-
-;; Enable lsp-bridge.
-(dolist (hook (list
-               'c-mode-hook
-               'c++-mode-hook
-               'java-mode-hook
-               'python-mode-hook
-               'ruby-mode-hook
-               'lua-mode-hook
-               'rust-mode-hook
-               'elixir-mode-hook
-               'go-mode-hook
-               'haskell-mode-hook
-               'haskell-literate-mode-hook
-               'dart-mode-hook
-               'scala-mode-hook
-               'typescript-mode-hook
-               'typescript-tsx-mode-hook
-               'js2-mode-hook
-               'js-mode-hook
-               'rjsx-mode-hook
-               'tuareg-mode-hook
-               'latex-mode-hook
-               'Tex-latex-mode-hook
-               'texmode-hook
-               'context-mode-hook
-               'texinfo-mode-hook
-               'bibtex-mode-hook
-               'clojure-mode-hook
-               'clojurec-mode-hook
-               'clojurescript-mode-hook
-               'clojurex-mode-hook
-               'sh-mode-hook
-               'web-mode-hook
-               ))
-  (add-hook hook (lambda ()
-                   (setq-local corfu-auto nil)  ;; let lsp-bridge control when popup completion frame
-                   (lsp-bridge-mode 1)
-                   )))
-
-(use-package format-all
-  :ensure t
-  :hook
-  (lsp-mode . format-all-mode)
-  (gfm-mode . format-all-mode)
-  ;; (format-all-mode . format-all-ensure-formatter)
+  :init
+  (require 'lsp-bridge)
+  ;; (setq lsp-bridge-python-command (expand-file-name "lsp-bridge/bin/python" (getenv "WORKON_HOME")))
   :config
-  (global-set-key (kbd "M-f") 'format-all-buffer))
+  ;; don't show lsp-bridge-info in modeline
+  (setq mode-line-misc-info (delete '(lsp-bridge-mode (" [" lsp-bridge--mode-line-format "] "))
+                                    mode-line-misc-info))
 
-;; optionally if you want to use debugger
-(use-package dap-mode
-  :ensure t)
-;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+  ;; (setq-local evil-goto-definition-functions '(lsp-bridge-jump))
 
-;; optional if you want which-key integration
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode))
+  (define-key evil-motion-state-map (kbd "C-o") #'unicorn/lsp-bridge-jump-back)
+  (define-key evil-motion-state-map "gR" #'lsp-bridge-rename)
+  (define-key evil-motion-state-map "gr" #'lsp-bridge-find-references)
+  (define-key evil-normal-state-map "gi" #'lsp-bridge-find-impl)
+  (define-key evil-motion-state-map "gd" #'unicorn/lsp-bridge-jump)
+  (define-key evil-motion-state-map "gs" #'lsp-bridge-restart-process)
+  (define-key evil-normal-state-map "gh" #'lsp-bridge-lookup-documentation)
 
-(provide 'init-lsp)
-(message "init-lsp loaded in '%.2f' seconds ..." (get-time-diff time-marked))
+  (evil-add-command-properties #'lsp-bridge-jump :jump t)
+
+  (evil-define-key 'normal lsp-bridge-ref-mode-map
+    (kbd "RET") 'lsp-bridge-ref-open-file-and-stay
+    "q" 'lsp-bridge-ref-quit)
+
+  (global-lsp-bridge-mode))
+
+(provide 'init-lsp-bridge)
+(message "init-lsp-bridge loaded in '%.2f' seconds ..." (get-time-diff time-marked))
 ;;; init-lsp.el ends here
