@@ -222,3 +222,6 @@ by using [**SPACE**] keyboard. You can also read from source code `~/.emacs.d/li
 
 - tested in emacs 28.05, Ubuntu 20.04, 20210116
 - tested in emacs 27.1, windows 10, 20210117, can also download and use unicorn-windows repo as well
+
+## Additional
+`git checkout lsp-bridge` start bridge config, currently cannot use for python env
