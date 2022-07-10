@@ -73,6 +73,7 @@
   ;; 使用 pupup-el 来绘制选词框, 如果用 emacs26, 建议设置
   ;; 为 'posframe, 速度很快并且菜单不会变形，不过需要用户
   ;; 手动安装 posframe 包。
+  (use-package posframe :ensure t)
   (setq pyim-page-tooltip 'popup)
   ;; 选词框显示5个候选词
   (setq pyim-page-length 20)
