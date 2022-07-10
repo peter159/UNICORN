@@ -173,7 +173,10 @@
   :config
   (sp-local-pair '(emacs-lisp-mode) "'" "'" :actions nil)
   (sp-local-pair '(emacs-lisp-mode) "`" "`" :actions nil)
-  (sp-use-paredit-bindings))
+  (sp-use-paredit-bindings)
+  (define-key smartparens-mode-map (kbd "M-j") 'pyim-convert-string-at-point) ;FIXME to avoid override pyim
+  )
+
 
 ;; using outline-minor-mode for evil folding
 (use-package outline-mode
