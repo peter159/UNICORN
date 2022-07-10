@@ -74,7 +74,7 @@
   ;; 为 'posframe, 速度很快并且菜单不会变形，不过需要用户
   ;; 手动安装 posframe 包。
   (use-package posframe :ensure t)
-  (setq pyim-page-tooltip 'popup)
+  (setq pyim-page-tooltip 'posframe)
   ;; 选词框显示5个候选词
   (setq pyim-page-length 20)
   ;; 让 Emacs 启动时自动加载 pyim 
