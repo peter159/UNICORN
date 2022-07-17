@@ -249,7 +249,8 @@
   "obs" 'bookmark-set
   "obd" 'bookmark-delete
   "obr" 'bookmark-rename
-  "obl" 'bookmark-bmenu-list)
+  "obl" 'bookmark-bmenu-list
+  "oh" 'browse-url)
 
 ;;;; major mode specific keybinding
 (which-key-add-key-based-replacements

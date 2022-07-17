@@ -36,6 +36,7 @@
   (web-mode . emmet-mode))
 
 (use-package vue-mode
+  :ensure t
   :mode "\\.vue\\'"
   :hook (vue-mode . prettier-js-mode)
   :config

@@ -35,6 +35,7 @@
 				   scala-mode
 				   go-mode
 				   sh-mode
+				   vue-mode
 				   )
   "Primary major modes of the lsp activated layer.")
 
