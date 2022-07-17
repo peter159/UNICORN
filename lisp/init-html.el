@@ -41,7 +41,8 @@
   :hook (vue-mode . prettier-js-mode)
   :config
   (add-hook 'vue-mode-hook #'lsp)
-  (setq prettier-js-args '("--parser vue")))
+  (setq prettier-js-args '("--parser vue"))
+  )
 
 (provide 'init-html)
 (message "init-html loaded in '%.2f' seconds" (get-time-diff time-marked))

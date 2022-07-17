@@ -26,6 +26,13 @@
 
 (mark-time-here)
 
+;; optimize lsp-mode
+(setenv "LSP_USE_PLISTS" "true")
+;; (setq gc-cons-threshold 100000000
+;;       read-process-output-max (* 1024 1024)
+;;       lsp-use-plists t
+;;       lsp-log-io nil)
+
 (use-package lsp-mode
   :ensure t
   :diminish
@@ -38,10 +45,10 @@
              lsp-install-server)
   :init
   (setq lsp-log-io nil
-	;; gc-cons-threshold 1000000000
-	;; read-process-output-max (* 1024 10240) ;; @see https://github.com/emacs-lsp/lsp-mode#performance
+	gc-cons-threshold 1000000000
+	read-process-output-max (* 1024 10240) ;; @see https://github.com/emacs-lsp/lsp-mode#performance
 	lsp-use-plists t ;;https://emacs-lsp.github.io/lsp-mode/page/performance/
-	)			
+	)
   (setq lsp-keymap-prefix "C-c l"
 	lsp-auto-guess-root nil
 	lsp-keep-workspace-alive nil
@@ -101,6 +108,11 @@
   (lsp-headerline-breadcrumb-symbols-hint-face
    ((t :inherit lsp-headerline-breadcrumb-symbols-face
        :underline (:style line :color ,(face-foreground 'success)))))
+  :custom
+  (lsp-vetur-format-default-formatter-css "prettier")
+  (lsp-vetur-format-default-formatter-html "prettier")
+  (lsp-vetur-format-default-formatter-js "prettier")
+  (lsp-vetur-validation-template nil)
   )
 
 (use-package lsp-ui
@@ -206,7 +218,7 @@
 ;; web with lsp-mode
 (use-package web-mode
   :ensure t
-  :mode ("\\.html\\'" "\\.vue\\'")
+  :mode ("\\.html\\'")
   :hook
   (html-mode . web-mode)
   ;; (web-mode . electric-spacing-mode)
