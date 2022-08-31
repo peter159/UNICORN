@@ -28,15 +28,19 @@
 (require 'package)
 
 ;; set http proxy, not need when set `git config --global http.proxy' in terminal
-(defvar global-httpproxy "127.0.0.1:12333")
+(defvar global-httpproxy "172.22.32.1:12333")
 (setq url-proxy-services `(("http" . , global-httpproxy)
 			   ("https" . ,global-httpproxy)
 			   ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
 
 ;; use mirror
 (setq package-check-signature nil)	; to avoid signature fail for package
-(setq-default package-archives '(("gnu"   . "http://elpa.zilongshanren.com/gnu/")
-				 ("melpa" . "http://elpa.zilongshanren.com/melpa/")))
+(setq-default package-archives '(
+				 ("gnu" . "https://elpa.gnu.org/packages/")
+				 ("melpa" . "https://melpa.org/packages/")
+				 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+				 ("org" . "https://orgmode.org/elpa/")
+				 ))
 
 ;; Load path
 ;; Optimize: Force "lisp"" and "site-lisp" at the head to reduce the startup time.
