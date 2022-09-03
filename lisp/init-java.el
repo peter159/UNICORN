@@ -29,7 +29,7 @@
 
 (use-package mvn
   :preface
-  (defun petmacs/mvn-clean-compile ()
+  (defun unicorn/mvn-clean-compile ()
     "Recompile using maven."
     (interactive)
     (mvn-clean)
