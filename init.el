@@ -36,10 +36,9 @@
 ;; use mirror
 (setq package-check-signature nil)	; to avoid signature fail for package
 (setq-default package-archives '(
-				 ("gnu" . "https://elpa.gnu.org/packages/")
-				 ("melpa" . "https://melpa.org/packages/")
-				 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-				 ("org" . "https://orgmode.org/elpa/")
+				 ("melpa-cn" . "http://1.15.88.122/melpa/")
+				 ("org-cn"   . "http://1.15.88.122/org/")
+				 ("gnu-cn"   . "http://1.15.88.122/gnu/")
 				 ))
 
 ;; Load path
@@ -104,7 +103,7 @@
 (require 'init-lsp)
 ;; (require 'init-lsp-bridge)
 (require 'init-lsp-python)
-;; (require 'init-lsp-golang)
+(require 'init-lsp-golang)
 (require 'init-lsp-ess)
 (require 'init-elisp)
 (require 'init-c-c++)

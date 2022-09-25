@@ -70,6 +70,7 @@
 	 (lsp-mode . (lambda ()
                        ;; Integrate `which-key'
                        (lsp-enable-which-key-integration)))
+	 (go-mode . lsp-deferred)
 	 )
   :bind (:map lsp-mode-map
               ("C-c C-d" . lsp-describe-thing-at-point)
@@ -88,7 +89,8 @@
    ((t :underline (:style line :color ,(face-foreground 'error))
        :inherit lsp-headerline-breadcrumb-path-face)))
   (lsp-headerline-breadcrumb-path-warning-face
-   ((t :underline (:style line :color ,(face-foreground 'warning))
+   ((t :under
+       line (:style line :color ,(face-foreground 'warning))
        :inherit lsp-headerline-breadcrumb-path-face)))
   (lsp-headerline-breadcrumb-path-info-face
    ((t :underline (:style line :color ,(face-foreground 'success))
@@ -166,6 +168,15 @@
 	lsp-pyright-venv-path (file-truename "~/miniconda3/envs")
 	))
 
+;; (use-package go-mode
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   (setq gofmt-command "goimports"
+;; 	indent-tabs-mode t)
+;;   :hook (go-mode . (lambda()
+;; 		     (lsp-deferred)))
+;;   )
 
 ;; c/c++ with lsp
 (use-package cc-mode
