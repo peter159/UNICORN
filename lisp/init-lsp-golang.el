@@ -32,6 +32,8 @@
   :functions go-update-tools
   :commands godoc-gogetdoc
   :init (setq godoc-at-point-function #'godoc-gogetdoc)
+  :hook (before-save . gofmt-before-save)
+  :custom (gofmt-command "goimports")
   :config
   ;; Env vars
   (with-eval-after-load 'exec-path-from-shell
