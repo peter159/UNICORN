@@ -42,5 +42,7 @@
 (defvar unicorn-default-mode-for-headers 'c++-mode
   "default default mode for .h header files, Can be `c-mode' or `c++-mode'")
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (provide 'init-custom-vars)
 ;;; init-custom-vars.el ends here
