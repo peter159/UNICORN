@@ -50,10 +50,6 @@ cd emacs
 > git config --global user.email xxx
 > git config --global credential.helper store
 
-```
-
-- Unicorn requires fonts for better UI display
-  - [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono)
   - [Fira Code](https://github.com/tonsky/FiraCode)
   - [Fira Code Symbol](https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip)
 
@@ -85,7 +81,7 @@ devtools::install_github("REditorSupport/languageserver")")
 - Markdown support
 
 ```shell
-> sudo apt install markdown
+> sudo apt install markdown grip
 ```
 
 - C/C++ package suggested, if you work with C/C++

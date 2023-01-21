@@ -26,6 +26,10 @@
 
 (mark-time-here)
 
+(use-package grip-mode
+  :ensure t
+  :hook ((markdown-mode org-mode) . grip-mode))
+
 (use-package markdown-mode
   :ensure t
   :defines flycheck-markdown-markdownlint-cli-config
