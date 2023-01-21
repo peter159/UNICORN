@@ -28,7 +28,7 @@
 (require 'package)
 
 ;; set http proxy, not need when set `git config --global http.proxy' in terminal
-(defvar global-httpproxy "172.21.135.1:12333")
+(defvar global-httpproxy "172.20.64.1:12333")
 (setq url-proxy-services `(("http" . , global-httpproxy)
 			   ("https" . ,global-httpproxy)
 			   ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
