@@ -93,7 +93,7 @@
   (after-init . global-wakatime-mode)
   :config
   ;; use `pip install wakatime' and `which wakatime' to get cli path
-  (setq wakatime-cli-path "/home/linyi/miniconda3/bin/wakatime"))
+  (setq wakatime-cli-path "~/.wakatime/wakatime-cli"))
 
 (use-package rg
   :ensure t
