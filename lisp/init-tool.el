@@ -86,9 +86,9 @@
   (defun wakatime-dashboard ()
     (interactive)
     (browse-url "https://wakatime.com/dashboard"))
-  (defun wakatime-setup-key ()
-    (interactive)
-    (wakatime-prompt-api-key))
+  ;; (defun wakatime-setup-key ()
+  ;;   (interactive)
+  ;;   (wakatime-prompt-api-key))
   :hook
   (after-init . global-wakatime-mode)
   :config
