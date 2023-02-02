@@ -63,7 +63,7 @@
         rime-show-candidate (unicorn/candidate-show-framework)
         rime-posframe-properties (list :internal-border-width 1))
   :bind
-  (("C-SPC" . toggle-input-method)
+  (("C-i" . toggle-input-method)
    )
   )
 
