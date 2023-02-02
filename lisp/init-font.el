@@ -62,9 +62,9 @@
         rime-user-data-dir (expand-file-name "data/rime" user-emacs-directory)
         rime-show-candidate (unicorn/candidate-show-framework)
         rime-posframe-properties (list :internal-border-width 1))
-  ;; :bind
-  ;; (("M-j" . toggle-input-method)
-  ;;  )
+  :bind
+  (("C-SPC" . toggle-input-method)
+   )
   )
 
 ;; ;; add pyim support,ref:http://www.mianquan.net/tutorial/pyim/setting.md
