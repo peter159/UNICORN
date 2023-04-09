@@ -71,6 +71,7 @@
                        ;; Integrate `which-key'
                        (lsp-enable-which-key-integration)))
 	 (go-mode . lsp-deferred)
+	 (typescript-mode . lsp-deferred)
 	 )
   :bind (:map lsp-mode-map
               ("C-c C-d" . lsp-describe-thing-at-point)

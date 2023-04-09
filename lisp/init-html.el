@@ -21,6 +21,7 @@
 ;;; Commentary:
 ;; ref: https://ithelp.ithome.com.tw/articles/10202632
 ;; ref: https://ithelp.ithome.com.tw/articles/10205908
+;; ref: https://github.com/howardabrams/dot-files/blob/master/emacs-web.org
 
 ;;
 
@@ -28,21 +29,12 @@
 
 (mark-time-here)
 
-
-(use-package emmet-mode
+(use-package web-mode
   :ensure t
-  :hook
-  (html-mode . emmet-mode)
-  (web-mode . emmet-mode))
-
-(use-package vue-mode
-  :ensure t
-  :mode "\\.vue\\'"
-  :hook (vue-mode . prettier-js-mode)
+  :mode (("\\.html?\\'" . web-mode))
   :config
-  (add-hook 'vue-mode-hook #'lsp)
-  (setq prettier-js-args '("--parser vue"))
-  )
+  (setq web-mode-enable-auto-pairing t
+        web-mode-enable-css-colorization t))
 
 (provide 'init-html)
 (message "init-html loaded in '%.2f' seconds" (get-time-diff time-marked))

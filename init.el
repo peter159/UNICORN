@@ -33,7 +33,7 @@
 			   ("https" . ,global-httpproxy)
 			   ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
 
-;; use mirror
+;; ;; use mirror
 (setq package-check-signature nil)	; to avoid signature fail for package
 (setq-default package-archives '(
 				 ("melpa-cn" . "http://1.15.88.122/melpa/")
@@ -111,6 +111,7 @@
 (require 'init-org)
 ;; (require 'init-eaf)
 (require 'init-dockerfile)
+(require 'init-ts)
 (require 'init-html)
 (require 'init-markdown)
 (require 'init-json)
