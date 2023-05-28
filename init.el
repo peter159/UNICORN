@@ -28,7 +28,7 @@
 (require 'package)
 
 ;; set http proxy, not need when set `git config --global http.proxy' in terminal
-(defvar global-httpproxy "127.0.0.1:12333")
+(defvar global-httpproxy "127.20.64.1:12333")
 (setq url-proxy-services `(("http" . , global-httpproxy)
 			   ("https" . ,global-httpproxy)
 			   ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
@@ -39,7 +39,6 @@
 				 ("melpa-cn" . "http://1.15.88.122/melpa/")
 				 ("org-cn"   . "http://1.15.88.122/org/")
 				 ("gnu-cn"   . "http://1.15.88.122/gnu/")
-				 ("nongnu"   . "http://1.15.88.122/nongnu/")
 				 ))
 
 ;; Load path
@@ -114,7 +113,7 @@
 (require 'init-dockerfile)
 (require 'init-ts)
 (require 'init-html)
-;; (require 'init-markdown)
+(require 'init-markdown)
 (require 'init-json)
 (require 'init-yaml)
 (require 'init-sql)
