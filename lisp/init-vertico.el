@@ -107,7 +107,7 @@
 (use-package consult
   :ensure t
   :bind (("C-s"   . consult-line))
-  :hook (completion-list-mode . consult-preview-at-point-mode)
+  ;; :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
   (if sys/win32p
       (progn
@@ -115,39 +115,26 @@
         (add-to-list 'process-coding-system-alist '("explorer" gbk . gbk))
         (setq consult-locate-args (encode-coding-string "es.exe -i -p -r" 'gbk))))
 
-  ;; Optionally configure the register formatting. This improves the register
-  ;; preview for `consult-register', `consult-register-load',
-  ;; `consult-register-store' and the Emacs built-ins.
-  (setq register-preview-delay 0.5
-        register-preview-function #'consult-register-format)
-
-  ;; Optionally tweak the register preview window.
-  ;; This adds thin lines, sorting and hides the mode line of the window.
-  (advice-add #'register-preview :override #'consult-register-window)
-
-  ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-
   :config
-  (consult-customize
-   consult-theme
-   :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep
-   consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-recent-file
-   consult--source-project-recent-file
-   :preview-key (kbd "M-."))
-  (setq
-   ;; Optionally configure the narrowing key.
-   ;; Both < and C-+ work reasonably well.
-   consult-narrow-key "<" ;; (kbd "C-+")
+  (setq ;; consult-project-root-function #'doom-project-root
+   consult-narrow-key "<"
    consult-project-function (lambda (_) (projectile-project-root))
    consult-line-numbers-widen t
    consult-async-min-input 2
    consult-async-refresh-delay  0.15
    consult-async-input-throttle 0.2
-   consult-async-input-debounce 0.1))
+   consult-async-input-debounce 0.1)
+
+  (consult-customize
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   :preview-key "M-.")
+
+  (consult-customize
+   consult-theme
+   :preview-key (list :debounce 0.5 'any))
+
+  (advice-add #'multi-occur :override #'consult-multi-occur))
 
 (use-package consult-dir
   :ensure t
