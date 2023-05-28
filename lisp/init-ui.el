@@ -28,7 +28,6 @@
 ;; hide menu-bar, tool-bar, scroll-bar and open with global line number mode
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(global-linum-mode -1)
 (if (fboundp 'scroll-bar-mode)
     (scroll-bar-mode -1))
 (electric-pair-mode 1)
@@ -158,16 +157,16 @@
   (setq-default display-line-numbers-type 'absolute) ;relative
   (global-display-line-numbers-mode t))
 
-;; Highlight current line number
-(use-package hlinum
-  :ensure t
-  :defines linum-highlight-in-all-buffersp
-  :hook (global-linum-mode . hlinum-activate)
-  :init
-  (setq linum-highlight-in-all-buffersp t)
-  (custom-set-faces
-   `(linum-highlight-face
-     ((t (:inherit 'default :background ,(face-background 'default) :foreground ,(face-foreground 'default)))))))
+;; ;; Highlight current line number
+;; (use-package hlinum
+;;   :ensure t
+;;   :defines linum-highlight-in-all-buffersp
+;;   :hook (global-linum-mode . hlinum-activate)
+;;   :init
+;;   (setq linum-highlight-in-all-buffersp t)
+;;   (custom-set-faces
+;;    `(linum-highlight-face
+;;      ((t (:inherit 'default :background ,(face-background 'default) :foreground ,(face-foreground 'default)))))))
 
 (use-package diff-hl
   :ensure t

@@ -39,6 +39,7 @@
 				 ("melpa-cn" . "http://1.15.88.122/melpa/")
 				 ("org-cn"   . "http://1.15.88.122/org/")
 				 ("gnu-cn"   . "http://1.15.88.122/gnu/")
+				 ("nongnu"   . "http://1.15.88.122/nongnu/")
 				 ))
 
 ;; Load path
@@ -113,7 +114,7 @@
 (require 'init-dockerfile)
 (require 'init-ts)
 (require 'init-html)
-(require 'init-markdown)
+;; (require 'init-markdown)
 (require 'init-json)
 (require 'init-yaml)
 (require 'init-sql)

@@ -201,6 +201,7 @@
   :commands evil-normal-state-map
   :init
   (setq
+   dashboard-icon-type 'all-the-icons
    dashboard-banner-logo-title "[U N I C O R N] "
    dashboard-startup-banner (expand-file-name "imgs/unicorn.png" user-emacs-directory)
    dashboard-center-content nil
@@ -214,7 +215,6 @@
 			     (agenda . "calendar")
 			     (projects . "file-directory")
 			     (registers . "database"))
-   ;; initial-buffer-choice (lambda() (get-buffer "*dashboard*"))
    dashboard-set-footer t
    dashboard-footer-icon "\xe930"
    dashboard-footer-messages '(" The philosophy of immersive programming"))
