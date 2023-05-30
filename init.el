@@ -27,18 +27,19 @@
 ;;; require package manager, config archives source and initialize all
 (require 'package)
 
-;; ;; set http proxy, not need when set `git config --global http.proxy' in terminal
-;; (defvar global-httpproxy "127.20.64.1:12333")
-;; (setq url-proxy-services `(("http" . , global-httpproxy)
-;; 			   ("https" . ,global-httpproxy)
-;; 			   ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
+;; set http proxy, not need when set `git config --global http.proxy' in terminal
+(defvar global-httpproxy "172.20.64.1:12333")
+(setq url-proxy-services `(("http" . ,global-httpproxy)
+			   ("https" . ,global-httpproxy)
+			   ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
 
 ;; ;; use mirror
 (setq package-check-signature nil)	; to avoid signature fail for package
 (setq-default package-archives '(
-				 ("melpa-cn" . "http://1.15.88.122/melpa/")
-				 ("org-cn"   . "http://1.15.88.122/org/")
-				 ("gnu-cn"   . "http://1.15.88.122/gnu/")
+				 ("melpa" . "http://1.15.88.122/melpa/")
+				 ("org"   . "http://1.15.88.122/org/")
+				 ("gnu"   . "http://1.15.88.122/gnu/")
+				 ("nongnu" . "http://1.15.88.122/nongnu/")
 				 ))
 
 ;; Load path
