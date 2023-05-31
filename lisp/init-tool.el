@@ -92,6 +92,8 @@
   :hook
   (after-init . global-wakatime-mode)
   :config
+  (setq browse-url-browser-function 'browse-url-generic
+	browse-url-generic-program "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe")
   ;; use `pip install wakatime' and `which wakatime' to get cli path
   (setq wakatime-cli-path "~/.wakatime/wakatime-cli"))
 
