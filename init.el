@@ -77,6 +77,10 @@
 ;; requre features from lisp
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+;; ;; add support for svg, WORKAROUND for lsp-treemacs reporting svg error
+;; or build with --with-cairo-xcb
+(add-to-list 'image-types 'svg)
+
 (require 'init-custom-vars)
 (require 'init-general-functions)
 (require 'init-package-management)

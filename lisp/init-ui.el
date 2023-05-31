@@ -61,30 +61,6 @@
    :repo "emacsmirror/font-lock-plus"
    :fetcher github))
 
-;; (use-package doom-modeline
-;;   :ensure t
-;;   :preface
-;;   (defface doom-modeline-python-venv
-;;     '((((background light))
-;;        :foreground "#136207" :bold t)
-;;       (t
-;;        :foreground  "#F37022" :bold t))
-;;     "Face to use for the mode-line python venv."
-;;     :group 'doom-modeline-faces)
-;;   :hook (after-init . doom-modeline-mode)
-;;   :init
-;;   (setq doom-modeline-icon "material"
-;;         doom-modeline-support-imenu t
-;;         doom-modeline-minor-modes nil
-;;         doom-modeline-indent-info nil
-;;         doom-modeline-height 1
-;;         doom-modeline-window-width-limit 110
-;;         doom-modeline-buffer-file-name-style 'relative-to-project)
-;;   ;; Prevent flash of unstyled modeline at startup
-;;   (unless after-init-time
-;;     (setq-default mode-line-format nil))
-;;   )
-
 (use-package doom-modeline
   :ensure t
   :hook ((after-init . doom-modeline-mode)
@@ -99,11 +75,13 @@
      doom-modeline-lsp t
      doom-modeline-persp-name t
      doom-modeline-github t
+     doom-modeline-time-icon t
+     doom-modeline-time t
      ;; doom-modeline-buffer-file-name-style 'truncate-with-project ;cause stuck
      doom-modeline-buffer-file-name-style 'auto ;file-name
      doom-modeline-major-mode-color-icon t
      doom-modeline-enable-word-count t
-     doom-modeline-minor-modes t
+     doom-modeline-minor-modes nil
      doom-modeline-env-version t
      doom-modeline-env-enable-python t)
     (doom-modeline-def-segment my-python-venv
