@@ -73,7 +73,6 @@ as the pyenv version then also return nil. This works around https://github.com/
 (defun unicorn/python-insert-breakpoint ()
   "Add a break point, highlight it."
   (interactive)
-  ;; (let ((trace  "import ipdb; ipdb.set_trace() # XXX BREAKPOINT")
   ;; ref: https://github.com/psf/black/issues/790
   (let ((trace  "__import__(\"ipdb\").set_trace()  # FIXME BREAKPOINT")
 	(line (thing-at-point 'line)))
