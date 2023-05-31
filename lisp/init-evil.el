@@ -201,7 +201,7 @@
   :commands evil-normal-state-map
   :init
   (setq
-   dashboard-icon-type 'all-the-icons
+   dashboard-icon-type 'nerd-icons
    dashboard-banner-logo-title "[U N I C O R N] "
    dashboard-startup-banner (expand-file-name "imgs/unicorn.png" user-emacs-directory)
    dashboard-center-content nil
@@ -210,11 +210,11 @@
 		     (agenda . 5))
    dashboard-set-file-icons t
    dashboard-set-heading-icons t
-   dashboard-heading-icons '((recents   . "history")
-			     (bookmarks . "bookmark")
-			     (agenda    . "calendar")
-			     (projects  . "rocket")
-			     (registers . "database"))
+   dashboard-heading-icons '((recents   . "nf-oct-history")
+			     (bookmarks . "nf-oct-bookmark")
+			     (agenda    . "nf-oct-calendar")
+			     (projects  . "nf-oct-rocket")
+			     (registers . "nf-oct-database"))
    dashboard-set-footer t
    dashboard-footer-icon "\xe930"
    dashboard-footer-messages '(" The philosophy of immersive programming"))
