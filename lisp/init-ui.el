@@ -95,33 +95,31 @@
   (progn
     (setq
      find-file-visit-truename t  ; display the real names for symlink files
-     doom-modeline-height 10
+     doom-modeline-height 25
      doom-modeline-lsp t
      doom-modeline-persp-name t
-     doom-modeline-github nil
+     doom-modeline-github t
      ;; doom-modeline-buffer-file-name-style 'truncate-with-project ;cause stuck
      doom-modeline-buffer-file-name-style 'auto ;file-name
      doom-modeline-major-mode-color-icon t
      doom-modeline-enable-word-count t
-     doom-modeline-minor-modes nil
+     doom-modeline-minor-modes t
      doom-modeline-env-version t
      doom-modeline-env-enable-python t)
     (doom-modeline-def-segment my-python-venv
-			       "The current python virtual environment state."
-			       (when (eq major-mode 'python-mode)
-				 (if (eq python-shell-virtualenv-root nil)
-				     ""
-				   (propertize
-				    ;; (let ((base-dir-name (file-name-nondirectory (substring python-shell-virtualenv-root 0 -1))))
-				    (let ((base-dir-name (file-name-nondirectory python-shell-virtualenv-root)))
-				      (if (< 12 (length base-dir-name))
-					  (format " (%s..)" (substring base-dir-name 0 12))
-					(format " (%s)" base-dir-name)))
-				    'face (if (doom-modeline--active) 'doom-modeline-buffer-major-mode)))))
+      "The current python virtual environment state."
+      (when (eq major-mode 'python-mode)
+	(if (eq python-shell-virtualenv-root nil)
+	    ""
+	  (propertize
+	   (let ((base-dir-name (file-name-nondirectory python-shell-virtualenv-root)))
+	     (if (< 12 (length base-dir-name))
+		 (format " (%s..)" (substring base-dir-name 0 12))
+	       (format " (%s)" base-dir-name)))
+	   'face (if (doom-modeline--active) 'doom-modeline-buffer-major-mode)))))
     (doom-modeline-def-modeline 'my-modeline-layout
-				'(bar workspace-name window-number modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
-				;; '(objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl input-method indent-info buffer-encoding my-python-venv process vcs checker)
-				'(objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl input-method indent-info buffer-encoding process vcs checker))
+      '(bar workspace-name window-number matches buffer-info remote-host buffer-position word-count parrot selection-info)
+      '(objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl input-method indent-info buffer-encoding process vcs checker))
     (defun setup-custom-doom-modeline ()
       (doom-modeline-set-modeline 'my-modeline-layout 'default))))
 

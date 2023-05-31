@@ -210,10 +210,10 @@
 		     (agenda . 5))
    dashboard-set-file-icons t
    dashboard-set-heading-icons t
-   dashboard-heading-icons '((recents . "file-text")
+   dashboard-heading-icons '((recents   . "history")
 			     (bookmarks . "bookmark")
-			     (agenda . "calendar")
-			     (projects . "file-directory")
+			     (agenda    . "calendar")
+			     (projects  . "rocket")
 			     (registers . "database"))
    dashboard-set-footer t
    dashboard-footer-icon "\xe930"

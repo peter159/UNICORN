@@ -39,7 +39,6 @@
   (setq flycheck-emacs-lisp-load-path 'inherit)
   (setq flycheck-flake8-maximum-line-length 99)
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-
   ;; Only check while saving and opening files
   (setq flycheck-check-syntax-automatically '(save mode-enabled)))
 
