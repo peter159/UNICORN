@@ -43,7 +43,6 @@
 
 ;; (use-package fontify-face :ensure t)
 
-;; add rime support
 ;; sudo apt-get install librime-dev
 (defun unicorn/candidate-show-framework ()
   (if (display-graphic-p)
@@ -51,6 +50,7 @@
     ;; 'popup
     'popup))
 
+;; add rime support
 (use-package rime
   :ensure t
   :quelpa

@@ -79,7 +79,7 @@
   :ensure nil
   :hook (after-init . save-place-mode))
 
-;; Automatically reload files was modified by external program
+;; Automatically reload file that was modified by external program
 (use-package autorevert
   :ensure nil
   :diminish
@@ -140,11 +140,11 @@
   (setq ediff-split-window-function 'split-window-horizontally)
   (setq ediff-merge-split-window-function 'split-window-horizontally))
 
-;; Automatic parenthesis pairing
-(use-package elec-pair
-  :ensure nil
-  :hook (after-init . electric-pair-mode)
-  :init (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
+;; ;; Automatic parenthesis pairing
+;; (use-package elec-pair
+;;   :ensure nil
+;;   :hook (after-init . electric-pair-mode)
+;;   :init (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
 ;; Make bindings that stick around
 (use-package hydra :ensure t)
