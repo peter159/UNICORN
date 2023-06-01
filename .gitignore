@@ -1,8 +1,8 @@
 # -*- mode: gitignore; -*-
 
 .cache/
-elpa/*
 persp-confs/
+elpa/*
 pyim/
 transient/
 url/
