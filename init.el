@@ -28,7 +28,9 @@
 (require 'package)
 
 ;; set http proxy, not need when set `git config --global http.proxy' in terminal
-(defvar global-httpproxy "127.0.0.1:12333")
+(defvar global-httpproxy "172.20.64.1:12333")
+(setenv "http_proxy" (concat "http://" global-httpproxy))
+(setenv "https_proxy" (concat "https://" global-httpproxy))
 (setq url-proxy-services `(("http" . ,global-httpproxy)
 			   ("https" . ,global-httpproxy)
 			   ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
@@ -114,6 +116,7 @@
 (require 'init-c-c++)
 (require 'init-java)
 (require 'init-org)
+(require 'init-gpt)
 ;; (require 'init-eaf)
 (require 'init-dockerfile)
 (require 'init-ts)
@@ -122,6 +125,7 @@
 (require 'init-json)
 (require 'init-yaml)
 (require 'init-sql)
+;; (require 'init-vba)
 
 (require 'init-shell)
 (require 'init-misc)

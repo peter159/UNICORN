@@ -195,6 +195,18 @@
   (define-key evil-normal-state-map (kbd "M-j") 'outline-move-subtree-down)
   (define-key evil-normal-state-map (kbd "M-k") 'outline-move-subtree-up))
 
+;; ;; (use-package ts-fold
+;; ;;   :ensure nil
+;; ;;   :quelpa
+;; ;;   (ts-fold :fetcher github
+;; ;; 	   :repo "emacs-tree-sitter/ts-fold"
+;; ;; 	   :files (("*.el" "Makefile","*.bat","*.sh")))
+;; ;;   :init
+;; ;;   (ts-fold-mode)
+;; ;;   )
+;; (use-package ts-fold
+;;   :load-path "~/.emacs.d/lisp/ts-fold/")
+
 (use-package dashboard
   :ensure t
   :diminish (dashboard-mode page-break-lines-mode)
@@ -202,8 +214,8 @@
   :init
   (setq
    dashboard-icon-type 'nerd-icons
-   dashboard-banner-logo-title "[U N I C O R N] "
-   dashboard-startup-banner (expand-file-name "imgs/unicorn.png" user-emacs-directory)
+   dashboard-banner-logo-title "[U N I C O R N]"
+   dashboard-startup-banner (expand-file-name "imgs/unicorn-face.png" user-emacs-directory) ;unicorn.png
    dashboard-center-content nil
    dashboard-items '((recents . 10)
 		     (bookmarks . 5)
