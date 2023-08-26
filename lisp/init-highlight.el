@@ -51,21 +51,30 @@
   (define-key symbol-overlay-map (kbd "h") 'evil-backward-char)
   (define-key symbol-overlay-map (kbd "H") 'symbol-overlay-map-help))
 
-(use-package highlight-indent-guides
+;; way more faster than others
+(use-package indent-bars
   :ensure t
-  ;; :defer t
-  :hook (((python-mode python-ts-mode yaml-mode yaml-ts-mode) . highlight-indent-guides-mode)
-         (highlight-indent-guides-mode . (lambda ()
-                                           (set-face-foreground 'highlight-indent-guides-character-face "#8f9091")
-                                           (set-face-foreground 'highlight-indent-guides-top-character-face "#fe5e10"))))
+  :quelpa
+  (indent-bars :fetcher github
+    	       :repo "jdtsmith/indent-bars"
+    	       :files ("*"))
+  :hook ((python-mode yaml-mode) . indent-bars-mode)
+  :init
+  (setq
+   indent-bars-display-on-blank-lines t
+   ;; indent-bars-highlight-current-depth petmacs-favor-color
+   )
   :config
-  (progn
-    (setq highlight-indent-guides-method 'bitmap
-          highlight-indent-guides-character ?\┆ ;; candidates: , ⋮, ┆, ┊, ┋, ┇
-          highlight-indent-guides-responsive 'top
-          highlight-indent-guides-auto-enabled nil
-          highlight-indent-guides-auto-character-face-perc 10
-          highlight-indent-guides-auto-top-character-face-perc 20)))
+  (setq
+   indent-bars-color '(highlight :face-bg t :blend 0.15)
+   indent-bars-pattern "."
+   indent-bars-width-frac 0.1
+   indent-bars-pad-frac 0.1
+   indent-bars-zigzag nil
+   indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1) ; blend=1: blend with BG only
+   indent-bars-highlight-current-depth '(:blend 0.5) ; pump up the BG blend on current
+   indent-bars-display-on-blank-lines t)
+  )
 
 ;; Highlight matching paren,e.g. ()
 (use-package paren
