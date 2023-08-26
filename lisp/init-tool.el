@@ -36,7 +36,6 @@
   (setq which-key-idle-delay 0.2)
   (setq which-key-separator " → ")
   (setq which-key-prefix-prefix "+")
-
   ;; Needed to avoid nil variable error before update to recent which-key
   (defvar which-key-replacement-alist nil)
   ;; Reset to the default or customized value before adding our values in order
@@ -45,20 +44,19 @@
   ;; Replace rules for better naming of functions
   (let ((new-descriptions
          ;; being higher in this list means the replacement is applied later
-         '(
-           ("unicorn/\\(.+\\)" . "\\1")
-           ("unicorn/toggle-\\(.+\\)" . "\\1")
-           ("avy-goto-word-or-subword-1" . "avy word")
-           ("shell-command" . "shell cmd")
-           ("universal-argument" . "universal arg")
-           ("er/expand-region" . "expand region")
+         '(("unicorn/\\(.+\\)" . "\\1")
+	   ("unicorn/toggle-\\(.+\\)" . "\\1")
+	   ("avy-goto-word-or-subword-1" . "avy word")
+	   ("shell-command" . "shell cmd")
+	   ("universal-argument" . "universal arg")
+	   ("er/expand-region" . "expand region")
 	   ("counsult-ripgrep" . "project rg")
-           ("evil-lisp-state-\\(.+\\)" . "\\1")
-           ("helm-mini\\|ivy-switch-buffer" . "list-buffers"))))
+	   ("evil-lisp-state-\\(.+\\)" . "\\1")
+	   ("helm-mini\\|ivy-switch-buffer" . "list-buffers"))))
     (dolist (nd new-descriptions)
-    ;; ensure the target matches the whole string
-    (push (cons (cons nil (concat "\\`" (car nd) "\\'")) (cons nil (cdr nd)))
-          which-key-replacement-alist)))
+      ;; ensure the target matches the whole string
+      (push (cons (cons nil (concat "\\`" (car nd) "\\'")) (cons nil (cdr nd)))
+            which-key-replacement-alist)))
   )
 
 (use-package hungry-delete
@@ -71,7 +69,7 @@
   :ensure t
   :init
   (setq expand-region-contract-fast-key "V"
-        expand-region-reset-fast-key "r"))
+	expand-region-reset-fast-key "r"))
 
 (use-package editorconfig
   :ensure t
@@ -86,15 +84,9 @@
   (defun wakatime-dashboard ()
     (interactive)
     (browse-url "https://wakatime.com/dashboard"))
-  ;; (defun wakatime-setup-key ()
-  ;;   (interactive)
-  ;;   (wakatime-prompt-api-key))
   :hook
   (after-init . global-wakatime-mode)
   :config
-  ;; (setq browse-url-browser-function 'browse-url-generic
-  ;; 	browse-url-generic-program "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
-  ;; 	)
   ;; use `pip install wakatime' and `which wakatime' to get cli path
   (setq wakatime-cli-path "~/.wakatime/wakatime-cli"))
 
@@ -104,9 +96,7 @@
   :config
   (setq rg-group-result t)
   (setq rg-show-columns t)
-
   (cl-pushnew '("tmpl" . "*.tmpl") rg-custom-type-aliases)
-
   (with-eval-after-load 'projectile
     (defalias 'projectile-ripgrep 'rg-project)
     (bind-key "s R" #'rg-project projectile-command-map)))
@@ -119,9 +109,8 @@
 
 ;; (use-package centered-cursor-mode :ensure t)
 (use-package carbon-now-sh :ensure t)
-
 (use-package restart-emacs :ensure t)
-(use-package daemons :ensure t)                   ; system services/daemons
+(use-package daemons :ensure t)		; system services/daemons
 
 (provide 'init-tool)
 (message "init-tool loaded in '%.2f' seconds" (get-time-diff time-marked))

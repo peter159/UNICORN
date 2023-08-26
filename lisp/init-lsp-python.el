@@ -130,10 +130,10 @@ as the pyenv version then also return nil. This works around https://github.com/
   (setq python-shell-completion-native-enable nil)
   (setq python-indent-guess-indent-offset-verbose nil)
   :hook
-  ((python-mode . (lambda ()
-		    (setq-local flycheck-checkers '(python-pylint))
-		    (pyvenv-tracking-mode 1) ;autoupdate python venv when switching proj
-		    (pyvenv-mode 1)))
+  (((python-mode python-ts-mode) . (lambda ()
+				     (setq-local flycheck-checkers '(python-pylint))
+				     (pyvenv-tracking-mode 1) ;autoupdate python venv when switching proj
+				     (pyvenv-mode 1)))
    (inferior-python-mode . (lambda ()
 			     (process-query-on-exit-flag
 			      (get-process "Python")))))
@@ -146,6 +146,7 @@ as the pyenv version then also return nil. This works around https://github.com/
   (when (and (executable-find "python")
              (string= python-shell-interpreter "python"))
     (setq python-shell-interpreter "python"))
+  (define-key python-ts-mode-map (kbd "M--") #'(lambda()(interactive)(insert " -> ")))
   (define-key python-mode-map (kbd "M--") #'(lambda()(interactive)(insert " -> ")))
   (define-key inferior-python-mode-map (kbd "C-n") 'comint-next-input)
   (define-key inferior-python-mode-map (kbd "<up>") 'comint-next-input)
@@ -153,7 +154,8 @@ as the pyenv version then also return nil. This works around https://github.com/
   (define-key inferior-python-mode-map (kbd "<down>") 'comint-previous-input)
   (define-key inferior-python-mode-map (kbd "<C-k>") 'comint-kill-input)
   (define-key inferior-python-mode-map (kbd "C-r") 'comint-history-isearch-backward)
-  (define-key python-mode-map (kbd "C-c C-b") 'unicorn/python-execute-file))
+  (define-key python-mode-map (kbd "C-c C-b") 'unicorn/python-execute-file)
+  (define-key python-ts-mode-map (kbd "C-c C-b") 'unicorn/python-execute-file))
 
 ;; (use-package py-isort :ensure t)
 
@@ -166,18 +168,19 @@ as the pyenv version then also return nil. This works around https://github.com/
     (require 'projectile)
     (require 'json)
     (let* ((pdir (projectile-project-root))
-	   (pfile (concat pdir "pyrightconfig.json"))
-	   (json-object-type 'hash-table)
-	   (json-array-type 'string)
-	   (json-key-type 'string))
+           (pfile (concat pdir "pyrightconfig.json"))
+           (json-object-type 'hash-table)
+           (json-array-type 'string)
+           (json-key-type 'string)
+           venv-name)
       (if (file-exists-p pfile)
-	  (progn
-	    (setq-local venv-name (gethash "venv" (json-read-file pfile)))
-	    (pyvenv-workon venv-name))
-	))
-    )
-  :hook (python-mode . pyvenv-autoload)
-  )
+          (progn
+            (setq venv-name (gethash "venv" (json-read-file pfile)))
+            (make-local-variable 'venv-name)
+            (pyvenv-workon venv-name))
+        )))
+  :hook ((python-mode python-ts-mode) . pyvenv-autoload))
+
 
 (provide 'init-lsp-python)
 (message "init-python loaded in '%.2f' seconds ..." (get-time-diff time-marked))

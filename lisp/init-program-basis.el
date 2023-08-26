@@ -26,18 +26,6 @@
 
 (mark-time-here)
 
-;; (use-package fill-column-indicator
-;;   :ensure t
-;;   :hook (prog-mode . (lambda ()
-;; 		       (fci-mode 1)
-;; 		       (fci-update-all-windows t)
-;; 		       ))
-;;   :init
-;;   (setq fci-rule-color "#808080"	;#808080
-;;   	fci-rule-use-dashes 'Fill-Column
-;;   	fci-dash-pattern 0.15)
-;;   )
-
 (use-package imenu-list
   :ensure t
   :defer t

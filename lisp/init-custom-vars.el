@@ -31,6 +31,7 @@
 				   c-mode
 				   c++-mode
 				   python-mode
+				   python-ts-mode
 				   java-mode
 				   scala-mode
 				   go-mode

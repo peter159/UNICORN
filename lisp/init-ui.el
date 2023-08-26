@@ -86,7 +86,7 @@
      doom-modeline-env-enable-python t)
     (doom-modeline-def-segment my-python-venv
       "The current python virtual environment state."
-      (when (eq major-mode 'python-mode)
+      (when (or (eq major-mode 'python-mode) (eq major-mode 'python-ts-mode))
 	(if (eq python-shell-virtualenv-root nil)
 	    ""
 	  (propertize
@@ -112,7 +112,6 @@
    modus-themes-italic-constructs t
    modus-themes-org-blocks 'tinted-background
    ;; modus-themes-syntax '(yellow-comments green-strings)
-
    modus-themes-paren-match '(bold intense)
    modus-themes-mode-line '(accented borderless (height . 0.9))
    modus-themes-region '(bg-only)
@@ -129,19 +128,16 @@
   :ensure t
   :config
   ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (setq doom-themes-enable-bold t	; if nil, bold is universally disabled
+        doom-themes-enable-italic t)	; if nil, italics is universally disabled
   (load-theme 'doom-one t)
-
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
-  
   ;; Enable custom neotree theme (all-the-icons must be installed!)
   (doom-themes-neotree-config)
   ;; or for treemacs users
   (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
   (doom-themes-treemacs-config)
-  
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
@@ -156,17 +152,6 @@
   :init
   (setq-default display-line-numbers-type 'absolute) ;relative
   (global-display-line-numbers-mode t))
-
-;; ;; Highlight current line number
-;; (use-package hlinum
-;;   :ensure t
-;;   :defines linum-highlight-in-all-buffersp
-;;   :hook (global-linum-mode . hlinum-activate)
-;;   :init
-;;   (setq linum-highlight-in-all-buffersp t)
-;;   (custom-set-faces
-;;    `(linum-highlight-face
-;;      ((t (:inherit 'default :background ,(face-background 'default) :foreground ,(face-foreground 'default)))))))
 
 (use-package diff-hl
   :ensure t

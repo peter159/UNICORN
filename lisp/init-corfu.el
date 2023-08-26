@@ -58,24 +58,9 @@
 ;; use corfu instead
 (when (display-graphic-p)
   (use-package all-the-icons :ensure t :if (display-graphic-p))
-
-  ;; (use-package corfu
-  ;;   :ensure t
-  ;;   :init
-  ;;   (setq corfu-cycle t
-  ;;         corfu-auto t
-  ;;         corfu-quit-at-boundary t
-  ;;         corfu-quit-no-match t
-  ;;         corfu-preview-current nil
-  ;; 	  corfu-echo-documentation nil
-  ;;         corfu-preselect-first t
-  ;;         corfu-auto-delay 0.1
-  ;;         corfu-auto-prefix 1)
-  ;;   (global-corfu-mode))
   (use-package corfu
     :bind (:map corfu-map
 		("C-M-m" . corfu-move-to-minibuffer))
-    ;; :hook (corfu-mode . corfu-indexed-mode)
     :init
     (setq corfu-cycle t
           corfu-auto t
@@ -87,45 +72,36 @@
           )
     (when (> (frame-pixel-width) 3000) (custom-set-faces '(corfu-default ((t (:height 1.3))))))
     (global-corfu-mode)
-
     (defun corfu-beginning-of-prompt ()
       "Move to beginning of completion input."
       (interactive)
       (corfu--goto -1)
       (goto-char (car completion-in-region--data)))
-
     (defun corfu-end-of-prompt ()
       "Move to end of completion input."
       (interactive)
       (corfu--goto -1)
       (goto-char (cadr completion-in-region--data)))
-
     (define-key corfu-map [remap move-beginning-of-line] #'corfu-beginning-of-prompt)
     (define-key corfu-map [remap move-end-of-line] #'corfu-end-of-prompt)
-
     (with-eval-after-load 'lsp-mode
       (setq lsp-completion-provider :none) ;; we use Corfu!
-
       (defun petmacs/lsp-mode-setup-completion ()
 	(setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
               '(orderless))) ;; Configure orderless
-
       (add-hook 'lsp-completion-mode-hook #'petmacs/lsp-mode-setup-completion)))
-
   (use-package kind-all-the-icons
     :ensure nil				;already in site-list
     :init
     ;; (require 'all-the-icons)
     (require 'kind-all-the-icons)
     (add-to-list 'corfu-margin-formatters #'kind-all-the-icons-margin-formatter))
-
   ;; ;; Use dabbrev with Corfu!
   (use-package dabbrev
     ;; Swap M-/ and C-M-/
     :ensure t
     :bind (("M-/" . dabbrev-completion)
            ("C-M-/" . dabbrev-expand)))
-
   (use-package cape
     :ensure t
     :bind (("C-M-o"   . cape-file))

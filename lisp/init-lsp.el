@@ -161,9 +161,9 @@
 ;; python with lsp mode
 (use-package lsp-pyright
   :ensure t
-  :hook (python-mode . (lambda ()
-			 (require 'lsp-pyright)
-			 (lsp-deferred)))
+  :hook ((python-mode python-ts-mode) . (lambda ()
+					  (require 'lsp-pyright)
+					  (lsp-deferred)))
   :init
   (setq lsp-pyright-typechecking-mode "basic"
 	lsp-pyright-venv-path (file-truename "~/miniconda3/envs")

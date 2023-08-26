@@ -81,11 +81,9 @@
           (cons (cdr x) (substring pattern 1))
         (when-let (x (assq (aref pattern (1- (length pattern))) +orderless-dispatch-alist))
           (cons (cdr x) (substring pattern 0 -1)))))))
-
   ;; Define orderless style with initialism by default
   (orderless-define-completion-style +orderless-with-initialism
     (orderless-matching-styles '(orderless-initialism orderless-literal orderless-regexp)))
-
   (setq
    ;; completion-styles '(orderless partial-completion)
    completion-styles '(orderless partial-completion basic)
@@ -114,7 +112,6 @@
         (add-to-list 'process-coding-system-alist '("es" gbk . gbk))
         (add-to-list 'process-coding-system-alist '("explorer" gbk . gbk))
         (setq consult-locate-args (encode-coding-string "es.exe -i -p -r" 'gbk))))
-
   :config
   (setq ;; consult-project-root-function #'doom-project-root
    consult-narrow-key "<"
@@ -124,16 +121,13 @@
    consult-async-refresh-delay  0.15
    consult-async-input-throttle 0.2
    consult-async-input-debounce 0.1)
-
   (consult-customize
    consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
    :preview-key "M-.")
-
   (consult-customize
    consult-theme
    :preview-key (list :debounce 0.5 'any))
-
   (advice-add #'multi-occur :override #'consult-multi-occur))
 
 (use-package consult-dir
@@ -157,7 +151,6 @@
   (setq which-key-use-C-h-commands nil
         ;; press C-h after a prefix key, it shows all the possible key bindings and let you choose what you want
         prefix-help-command #'embark-prefix-help-command)
-
   (setq
    embark-verbose-indicator-display-action
    '((display-buffer-at-bottom)

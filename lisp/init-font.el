@@ -47,7 +47,6 @@
 (defun unicorn/candidate-show-framework ()
   (if (display-graphic-p)
       'posframe
-    ;; 'popup
     'popup))
 
 ;; add rime support

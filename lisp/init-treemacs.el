@@ -60,7 +60,6 @@
         treemacs-silent-filewatch              t
         treemacs-silent-refresh                t
         treemacs-width                         30)
-
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t)
   ;; (treemacs-fringe-indicator-mode t)

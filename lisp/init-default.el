@@ -50,7 +50,7 @@
     (scroll-bar-mode -1))
 
 ;; Line and Column
-(setq-default fill-column 100)
+(setq-default fill-column 120)
 (setq column-number-mode t)		; show in mode-line
 ;; (setq line-number-mode t)
 

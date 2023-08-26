@@ -47,7 +47,6 @@
   (global-set-key (kbd "<f7>") 'symbol-overlay-mode)
   (global-set-key (kbd "M-c") 'symbol-overlay-remove-all)
   ;; (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
-
   ;; remap help tooltip keybinding from h to H in symbol-overlay-map
   (define-key symbol-overlay-map (kbd "h") 'evil-backward-char)
   (define-key symbol-overlay-map (kbd "H") 'symbol-overlay-map-help))
@@ -55,7 +54,7 @@
 (use-package highlight-indent-guides
   :ensure t
   ;; :defer t
-  :hook (((python-mode yaml-mode) . highlight-indent-guides-mode)
+  :hook (((python-mode python-ts-mode yaml-mode yaml-ts-mode) . highlight-indent-guides-mode)
          (highlight-indent-guides-mode . (lambda ()
                                            (set-face-foreground 'highlight-indent-guides-character-face "#8f9091")
                                            (set-face-foreground 'highlight-indent-guides-top-character-face "#fe5e10"))))
@@ -111,7 +110,6 @@
                                                   "white" "black"))
                                 (:background ,color)))))
     (advice-add #'rainbow-colorize-match :override #'my-rainbow-colorize-match)
-
     (defun my-rainbow-clear-overlays ()
       "Clear all rainbow overlays."
       (remove-overlays (point-min) (point-max) 'ovrainbow t))

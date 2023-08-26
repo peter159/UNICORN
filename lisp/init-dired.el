@@ -40,27 +40,22 @@
     "go up a level using same buffer"
     (interactive)
     (find-alternate-file ".."))
-
   :config
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always)
   (setq dired-recursive-copies 'always)
-
   (when (eq system-type 'windows-nt)
     ;; Suppress the warning: `ls does not support --dired'.
     (setq dired-use-ls-dired nil)
-
     (when (executable-find "gls")
       ;; Use GNU ls as `gls' from `coreutils' if available.
       (setq insert-directory-program "gls")))
-
   (when (or (and (eq system-type 'darwin) (executable-find "gls"))
             (and (not (eq system-type 'darwin)) (executable-find "ls")))
     ;; Using `insert-directory-program'
     (setq ls-lisp-use-insert-directory-program t)
     ;; Show directory first
     (setq dired-listing-switches "-alh --group-directories-first"))
-
   (evil-define-key 'normal dired-mode-map (kbd "RET") 'dired-find-alternate-file) 
   ;; was dired-up-director
   (evil-define-key 'normal dired-mode-map (kbd "C-u") 'unicorn/dired-goto-parent-directory)
@@ -111,7 +106,6 @@
             ("\\.\\(?:mp3\\|flac\\)\\'" ,cmd)
             ("\\.html?\\'" ,cmd)
             ("\\.md\\'" ,cmd))))
-
   (setq dired-omit-files
         (concat dired-omit-files
                 "\\|^.DS_Store$\\|^.projectile$\\|^.git$\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*")))

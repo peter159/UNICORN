@@ -75,7 +75,7 @@
   :ensure nil
   :quelpa
   (evil-major-leader
-   :repo "Peter-Chou/evil-major-leader"
+   :repo "peter159/evil-major-leader"
    :fetcher github)
   :init
   (global-evil-major-leader-mode))
@@ -87,7 +87,6 @@
   :ensure t
   :init (setq evil-want-integration t
 	      evil-want-keybinding nil)
-
   :config
   (use-package evil-anzu :ensure t)
   (require 'evil-anzu)
@@ -99,14 +98,12 @@
       (call-interactively 'evil-shift-left)
       (evil-normal-state)
       (evil-visual-restore))
-
     (defun unicorn//evil-visual-shift-right ()
       "evil right shift without losing selection"
       (interactive)
       (call-interactively 'evil-shift-right)
       (evil-normal-state)
       (evil-visual-restore))
-
     ;; Overload shifts so that they don't lose the selection
     (define-key evil-visual-state-map (kbd "<") 'unicorn//evil-visual-shift-left)
     (define-key evil-visual-state-map (kbd ">") 'unicorn//evil-visual-shift-right)
@@ -164,20 +161,6 @@
   :config
   (evil-collection-init))
 
-(use-package evil-smartparens
-  :ensure t
-  :defer t
-  :init
-  (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
-  (add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
-  :config
-  (sp-local-pair '(emacs-lisp-mode) "'" "'" :actions nil)
-  (sp-local-pair '(emacs-lisp-mode) "`" "`" :actions nil)
-  (sp-use-paredit-bindings)
-  (define-key smartparens-mode-map (kbd "M-j") 'pyim-convert-string-at-point) ;FIXME to avoid override pyim
-  )
-
-
 ;; using outline-minor-mode for evil folding
 (use-package outline-mode
   :ensure nil
@@ -185,27 +168,15 @@
   :init
   ;; (evil-define-key 'normal outline-mode-map (kbd "zK") 'outline-show-branches) ; Show all children recursively but no body.
   ;; (evil-define-key 'normal outline-mode-map (kbd "zk") 'outline-show-children) ; Direct children only unlike `outline-show-branches'
-  (define-key evil-normal-state-map (kbd "zB") 'outline-hide-body) 
-  (define-key evil-normal-state-map (kbd "zb") 'outline-show-all) 
+  (define-key evil-normal-state-map (kbd "zB") 'outline-hide-body)
+  (define-key evil-normal-state-map (kbd "zb") 'outline-show-all)
   (define-key evil-normal-state-map (kbd "ze") 'outline-show-entry)
   (define-key evil-normal-state-map (kbd "zl") 'outline-hide-leaves)
-  (define-key evil-normal-state-map (kbd "zo") 'outline-hide-other) 
+  (define-key evil-normal-state-map (kbd "zo") 'outline-hide-other)
   (define-key evil-normal-state-map (kbd "zj") 'outline-forward-same-level)
   (define-key evil-normal-state-map (kbd "zk") 'outline-backward-same-level)
   (define-key evil-normal-state-map (kbd "M-j") 'outline-move-subtree-down)
   (define-key evil-normal-state-map (kbd "M-k") 'outline-move-subtree-up))
-
-;; ;; (use-package ts-fold
-;; ;;   :ensure nil
-;; ;;   :quelpa
-;; ;;   (ts-fold :fetcher github
-;; ;; 	   :repo "emacs-tree-sitter/ts-fold"
-;; ;; 	   :files (("*.el" "Makefile","*.bat","*.sh")))
-;; ;;   :init
-;; ;;   (ts-fold-mode)
-;; ;;   )
-;; (use-package ts-fold
-;;   :load-path "~/.emacs.d/lisp/ts-fold/")
 
 (use-package dashboard
   :ensure t

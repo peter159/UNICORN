@@ -1,9 +1,9 @@
-;;; init-version-control.el ---                      -*- lexical-binding: t; -*-
+;;; init-lsp.el ---                                  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2019  
+;; Copyright (C) 2019
 
 ;; Author:  <peter.linyi@DESKTOP-PMTGUNT>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,26 +20,23 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
 (mark-time-here)
 
-(use-package magit
+;; M-x treesit-auto-install-all
+(use-package treesit-auto
   :ensure t
+  :demand t
+  :init
+  (setq treesit-auto-install 'prompt
+        treesit-font-lock-level 4)
   :config
-  ;; show tasks
-  (use-package magit-todos
-    :ensure t
-    :hook (after-init . magit-todos-mode))
-  ;; Open github/gitlab/bitbucket page
-  (use-package browse-at-remote
-    :ensure t
-    :bind (:map vc-prefix-map
-		("B" . browse-at-remote))))
+  (setq python-ts-mode-hook python-mode-hook)
+  (global-treesit-auto-mode))
 
-
-(provide 'init-version-control)
-(message "init-version-control loaded in '%.2f' seconds ..." (get-time-diff time-marked))
-;;; init-version-control.el ends here
+(provide 'init-treesit)
+(message "init-treesit loaded in '%.2f' seconds ..." (get-time-diff time-marked))
+;;; init-lsp.el ends here

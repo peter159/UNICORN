@@ -37,7 +37,6 @@
   :bind ("C-x C-b" . ibuffer)
   :init
   (setq ibuffer-filter-group-name-face '(:inherit (font-lock-string-face bold)))
-
   ;; Display buffer icons on GUI
   (when (display-graphic-p)
     (define-ibuffer-column icon (:name " ")
@@ -51,7 +50,6 @@
                               :family ,(all-the-icons-icon-family icon)
                               :inherit
                               )))))
-
     (setq ibuffer-formats '((mark modified read-only locked
                                   " " (icon 2 2 :left :elide) (name 18 18 :left :elide)
                                   " " (size 9 -1 :right)
@@ -64,7 +62,6 @@
   (define-key ibuffer-mode-map (kbd "k") 'evil-previous-line)
   (define-key ibuffer-mode-map (kbd "h") 'evil-backward-char)
   (define-key ibuffer-mode-map (kbd "l") 'evil-forward-char)
-
   ;; Group ibuffer's list by project root
   (use-package ibuffer-projectile
     :ensure t

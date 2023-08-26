@@ -1,6 +1,7 @@
 # -*- mode: gitignore; -*-
 
 .cache/
+tree-sitter/
 persp-confs/
 elpa/*
 pyim/

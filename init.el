@@ -107,6 +107,7 @@
 
 (require 'init-program-basis)
 (require 'init-flycheck)
+;; (require 'init-treesit)
 (require 'init-lsp)
 ;; (require 'init-lsp-bridge)
 (require 'init-lsp-python)

@@ -2,5 +2,5 @@
   "venvPath": "/home/linyi/miniconda3/envs",
   "venv": "toolbox",
   "pythonVersion": "3.10",
-  "typeCheckingMode": "on"
+  "typeCheckingMode": "off"
 }
