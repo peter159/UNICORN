@@ -165,7 +165,7 @@
 					  (require 'lsp-pyright)
 					  (lsp-deferred)))
   :init
-  (setq lsp-pyright-typechecking-mode "basic"
+  (setq lsp-pyright-typechecking-mode "off"
 	lsp-pyright-venv-path (file-truename "~/miniconda3/envs")
 	))
 

@@ -34,7 +34,7 @@
   (setq treesit-auto-install 'prompt
         treesit-font-lock-level 4)
   :config
-  (setq python-ts-mode-hook python-mode-hook)
+  ;; (setq python-ts-mode-hook python-mode-hook)
   (global-treesit-auto-mode))
 
 (provide 'init-treesit)

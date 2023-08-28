@@ -1,9 +1,9 @@
 ;;; init-yasnippet.el ---                            -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2019  
+;; Copyright (C) 2019
 
 ;; Author:  <peter.linyi@DESKTOP-PMTGUNT>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -31,7 +31,22 @@
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
 
-(use-package yasnippet-snippets :ensure t)	
+(use-package yasnippet-snippets
+  :ensure nil
+  :quelpa
+  (yasnippet-snippets :fetcher github
+    		      :repo "AndreaCrotti/yasnippet-snippets"
+    		      :files ("*"))
+  )
+
+(use-package yasnippet-capf
+  :ensure nil
+  :quelpa
+  (yasnippet-capf :fetcher github
+    		  :repo "elken/yasnippet-capf"
+    		  :files ("*"))
+  :init
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
 (provide 'init-yasnippet)
 (message "init-yasnippet loaded in '%.2f' seconds ..." (get-time-diff time-marked))
