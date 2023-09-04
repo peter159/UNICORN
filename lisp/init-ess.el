@@ -43,12 +43,6 @@
 	ess-help-reuse-window nil
 	ess-indent-offset 2
 	ess-offset-continued 'straight)
-  (use-package electric-spacing
-    :ensure t)
-
-  :hook
-  (after-init . electric-spacing-mode)
-
   :config
   (require 'ess-site)
   (add-hook 'ess-mode-hook #'electric-spacing-mode)

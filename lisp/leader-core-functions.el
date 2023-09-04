@@ -310,6 +310,21 @@ current window."
   (which-key-add-key-based-replacements (format "%s m%s" unicorn-evil-major-leader-insert-default-key key) name)
   (which-key-add-key-based-replacements (format ", %s" key) name))
 
+;; (defun windows-to-linux-path ()
+;;   "Prompts the user for a Windows path and converts it to a Linux path."
+;;   (interactive)
+;;   (let* ((path (read-file-name "Enter Windows path: "))
+;;          (linux-path (replace-regexp-in-string "\\\\" "/" path)))
+;;     (message "Linux path: %s" (concat "/mnt/" (downcase (substring linux-path 0 1)) (substring linux-path 2)))))
+
+(defun windows-to-linux-path ()
+  "Prompts the user for a Windows path and converts it to a Linux path."
+  (interactive)
+  (let* ((path (read-file-name "Enter Windows path: "))
+         (linux-path (replace-regexp-in-string "\\\\" "/" path)))
+    (message "Linux path: %s" (concat "/mnt/" (downcase (substring linux-path 0 1)) (substring linux-path 2)))
+    (kill-new (concat "/mnt/" (downcase (substring linux-path 0 1)) (substring linux-path 2)))))
+
 (provide 'leader-core-functions)
 (message "leader-core-functions loaded in '%.2f' seconds ..." (get-time-diff time-marked))
 ;;; core-functions.el ends here
