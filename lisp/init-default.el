@@ -157,7 +157,13 @@
 (use-package electric-operator
   :ensure t
   :hook
-  (prog-mode . electric-operator-mode))
+  (prog-mode . electric-operator-mode)
+  :config
+  (electric-operator-add-rules-for-mode 'emacs-lisp-mode
+					(cons "-" "-"))
+  (electric-operator-add-rules-for-mode 'lisp-interaction-mode
+					(cons "-" "-"))
+  )
 
 ;; (global-undo-tree-mode -1)
 (use-package undo-tree
