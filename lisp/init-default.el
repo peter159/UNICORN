@@ -149,10 +149,15 @@
 ;; Make bindings that stick around
 (use-package hydra :ensure t)
 
-(use-package electric-spacing
+;; (use-package electric-spacing
+;;   :ensure t
+;;   :hook
+;;   (prog-mode . electric-spacing-mode))
+
+(use-package electric-operator
   :ensure t
   :hook
-  (prog-mode . electric-spacing-mode))
+  (prog-mode . electric-operator-mode))
 
 ;; (global-undo-tree-mode -1)
 (use-package undo-tree

@@ -65,7 +65,9 @@
   (ess-r-mode . (lambda ()
 		  (setq-local ess-indent-offset 2)
 		  (setq-local ess-set-style 'RStudio)
-		  (flymake-mode -1)))
+		  (flymake-mode -1)
+		  ;; (electric-operator-mode 1)
+		  ))
   :config
   (require 'ess-site)
   ;; (define-key ess-mode-map (kbd "=") '(lambda()(interactive)(insert " = ")))
