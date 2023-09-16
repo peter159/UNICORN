@@ -1,5 +1,6 @@
 # -*- mode: gitignore; -*-
 
+quelpa/
 .cache/
 tree-sitter/
 persp-confs/
