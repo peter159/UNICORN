@@ -38,7 +38,7 @@
              treemacs-git-mode)
   :bind (([f8]        . treemacs)
          ("C-`"       . treemacs-select-window)
-         ("M-1"       . treemacs-select-window)
+         ("M-0"       . treemacs-select-window)
          ("C-x 1"     . treemacs-delete-other-windows)
          ("C-x t 1"   . treemacs-delete-other-windows)
          ("C-x t t"   . treemacs)
@@ -51,7 +51,8 @@
 			   (display-line-numbers-mode -1)
 			   (hl-line-mode -1)))
   :init
-  (define-key winum-keymap (kbd "M-0") 'treemacs-select-window)
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
   :config
   (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
 	treemacs-missing-project-action        'remove
