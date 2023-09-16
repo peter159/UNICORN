@@ -1,4 +1,4 @@
-;;; init-ivy.el ---                                  -*- lexical-binding: t; -*-
+;;; init-vertico.el ---                                  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019
 
@@ -181,4 +181,3 @@
 
 (provide 'init-vertico)
 (message "init-vertico loaded in %.2f seconds ..." (get-time-diff time-marked))
-;;; init-ivy.el ends here

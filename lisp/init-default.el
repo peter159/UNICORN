@@ -193,4 +193,3 @@
 
 (provide 'init-default)
 (message "init-default loaded in '%.2f' seconds ..." (get-time-diff time-marked))
-;;; init-default.el ends here

@@ -39,4 +39,3 @@
 
 (provide 'init-treesit)
 (message "init-treesit loaded in '%.2f' seconds ..." (get-time-diff time-marked))
-;;; init-lsp.el ends here

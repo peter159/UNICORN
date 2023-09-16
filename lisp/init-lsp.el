@@ -76,7 +76,8 @@
   :bind (:map lsp-mode-map
               ("C-c C-d" . lsp-describe-thing-at-point)
               ([remap xref-find-definitions] . lsp-find-definition)
-              ([remap xref-find-references] . lsp-find-references))
+              ([remap xref-find-references] . lsp-find-references)
+	      )
   :config
   (with-eval-after-load 'lsp-mode
     (defun unicorn/lsp-mode-setup-completion()
@@ -123,7 +124,10 @@
   :commands lsp-ui-doc-mode)
 
 (use-package consult-lsp
-  :ensure t)
+  :ensure t
+  :after lsp-mode
+  :bind (:map lsp-mode-map
+              ("M-." . consult-lsp-symbols)))
 
 (use-package lsp-treemacs
   :ensure t

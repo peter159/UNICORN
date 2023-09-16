@@ -68,4 +68,3 @@
 
 (provide 'init-font)
 (message "init-font loaded in '%.2f' seconds ..." (get-time-diff time-marked))
-;;; init-font.el ends here

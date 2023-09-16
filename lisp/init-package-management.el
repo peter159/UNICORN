@@ -79,4 +79,3 @@
 
 (provide 'init-package-management)
 (message "init-package-management loaded in '%.2f' seconds ..." (get-time-diff time-marked))
-;;; init-package-management.el ends here

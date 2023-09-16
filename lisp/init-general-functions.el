@@ -41,4 +41,3 @@
 
 (provide 'init-general-functions)
 (message "init-general-functions loaded in '%.2f seconds ...'" (get-time-diff time-marked))
-;;; init-general-functions.el ends here

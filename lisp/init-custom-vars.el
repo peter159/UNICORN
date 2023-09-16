@@ -51,4 +51,3 @@
 	   (require 'nerd-icons nil t))))
 
 (provide 'init-custom-vars)
-;;; init-custom-vars.el ends here
