@@ -65,7 +65,7 @@
     (push '("*Help*"                 :dedicated t :position bottom :stick t :noselect t   :height 0.4) popwin:special-display-config)
     (push '("*Process List*"         :dedicated t :position bottom :stick t :noselect nil :height 0.4) popwin:special-display-config)
     (push '("*Proced*"               :dedicated t :position right  :stick t :noselect nil :width 0.5 ) popwin:special-display-config)
-    (push '("*compilation*"          :dedicated t :position bottom :stick t :noselect t   :height 0.5) popwin:special-display-config)
+    ;; (push '("*compilation*"          :dedicated t :position bottom :stick t :noselect t   :height 0.5) popwin:special-display-config)
     (push '("*Shell Command Output*" :dedicated t :position bottom :stick t :noselect nil            ) popwin:special-display-config)
     (push '("*Async Shell Command*"  :dedicated t :position bottom :stick t :noselect nil            ) popwin:special-display-config)
     (push '(" *undo-tree*"           :dedicated t :position right  :stick t :noselect nil :width   60) popwin:special-display-config)
