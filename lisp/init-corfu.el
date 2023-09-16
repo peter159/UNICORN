@@ -56,7 +56,6 @@
   (add-hook 'orderless-style-dispatchers #'nasy/orderless-dispatch-flex-first nil 'local))
 
 ;; use corfu instead
-;; (use-package all-the-icons :ensure t :if (display-graphic-p))
 (use-package nerd-icons :ensure t)
 
 (use-package corfu

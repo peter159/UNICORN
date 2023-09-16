@@ -73,10 +73,6 @@
               ("S" . hydra-dired-quick-sort/body)))
 
 ;; ;; bind with nerd-icons-dired
-;; (use-package all-the-icons-dired
-;;   :ensure t
-;;   :hook (dired-mode . all-the-icons-dired-mode))
-
 (use-package nerd-icons-dired
   :ensure t
   :hook (dired-mode . nerd-icons-dired-mode))
