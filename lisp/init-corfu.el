@@ -58,6 +58,7 @@
 ;; use corfu instead
 (when (display-graphic-p)
   (use-package all-the-icons :ensure t :if (display-graphic-p))
+  (use-package nerd-icons :ensure t)
   (use-package corfu
     :bind (:map corfu-map
 		("C-M-m" . corfu-move-to-minibuffer))
