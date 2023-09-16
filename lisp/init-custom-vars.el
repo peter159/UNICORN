@@ -45,5 +45,10 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(defun icons-displayable-p ()
+  "Return non-nil if icons are displayable."
+  (and (or (featurep 'nerd-icons)
+	   (require 'nerd-icons nil t))))
+
 (provide 'init-custom-vars)
 ;;; init-custom-vars.el ends here

@@ -38,7 +38,7 @@
              treemacs-git-mode)
   :bind (([f8]        . treemacs)
          ("C-`"       . treemacs-select-window)
-         ("M-0"       . treemacs-select-window)
+         ("M-1"       . treemacs-select-window)
          ("C-x 1"     . treemacs-delete-other-windows)
          ("C-x t 1"   . treemacs-delete-other-windows)
          ("C-x t t"   . treemacs)
@@ -54,6 +54,7 @@
   (define-key winum-keymap (kbd "M-0") 'treemacs-select-window)
   :config
   (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
+	treemacs-missing-project-action        'remove
         treemacs-sorting                       'alphabetic-case-insensitive-desc
         treemacs-follow-after-init             t
         treemacs-is-never-other-window         t
@@ -70,6 +71,15 @@
     (`(t . _)
      (treemacs-git-mode 'simple)))
   (evil-define-key 'treemacs treemacs-mode-map (kbd "f") #'treemacs-RET-action))
+
+(use-package treemacs-nerd-icons
+  :ensure t
+  :demand t
+  :when (icons-displayable-p)
+  :custom-face
+  (treemacs-nerd-icons-root-face ((t (:inherit nerd-icons-green :height 1.3))))
+  (treemacs-nerd-icons-file-face ((t (:inherit nerd-icons-dsilver))))
+  :config (treemacs-load-theme "nerd-icons"))
 
 (use-package treemacs-evil
   :ensure t

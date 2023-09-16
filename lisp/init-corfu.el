@@ -94,10 +94,6 @@
     (add-hook 'lsp-completion-mode-hook #'petmacs/lsp-mode-setup-completion)))
 
 ;; M-x kind-icon-preview-all to reset and preview all icons after installation
-(defun icons-displayable-p ()
-  "Return non-nil if icons are displayable."
-  (and (or (featurep 'nerd-icons)
-	   (require 'nerd-icons nil t))))
 (use-package kind-icon
   :ensure t
   :quelpa (kind-icon :fetcher github
