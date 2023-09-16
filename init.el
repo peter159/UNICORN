@@ -48,6 +48,9 @@
 ;; Optimize: Force "lisp"" and "site-lisp" at the head to reduce the startup time.
 (defun update-load-path (&rest _)
   "Update `load-path'."
+  ;; 检查 site-lisp 文件夹是否存在，如果不存在则创建它
+  (unless (file-exists-p "~/.emacs.d/site-lisp")
+    (make-directory "~/.emacs.d/site-lisp"))
   (push (expand-file-name "site-lisp" user-emacs-directory) load-path)
   (push (expand-file-name "lisp" user-emacs-directory) load-path)
   (push (expand-file-name "list/init-shell" user-emacs-directory) load-path))
