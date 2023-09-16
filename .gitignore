@@ -6,6 +6,7 @@ tree-sitter/
 persp-confs/
 elpa/*
 pyim/
+data/
 transient/
 url/
 site-lisp/emacs-application-framework/
