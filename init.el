@@ -118,7 +118,6 @@
 (require 'init-java)
 (require 'init-org)
 (require 'init-gpt)
-;; (require 'init-eaf)
 (require 'init-dockerfile)
 (require 'init-ts)
 (require 'init-html)

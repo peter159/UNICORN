@@ -72,7 +72,7 @@
   :bind (:map dired-mode-map
               ("S" . hydra-dired-quick-sort/body)))
 
-;; ;; bind with all-the-icons, or nerd-icons-dired
+;; ;; bind with nerd-icons-dired
 ;; (use-package all-the-icons-dired
 ;;   :ensure t
 ;;   :hook (dired-mode . all-the-icons-dired-mode))
