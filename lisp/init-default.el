@@ -191,5 +191,17 @@
     (setq exec-path-from-shell-arguments '("-l"))
     (exec-path-from-shell-initialize)))
 
+;; Cross-referencing commands
+(use-package xref
+  :init
+  ;; Use faster search tool
+  (setq xref-search-program (cond
+                             ((executable-find "ugrep") 'ugrep)
+                             ((executable-find "rg") 'ripgrep)
+                             (t 'grep)))
+  ;; Select from xref candidates in minibuffer
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read
+        xref-show-xrefs-function #'xref-show-definitions-completing-read))
+
 (provide 'init-default)
 (message "init-default loaded in '%.2f' seconds ..." (get-time-diff time-marked))

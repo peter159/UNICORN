@@ -123,6 +123,9 @@
     (define-key evil-normal-state-map (kbd "C-S-l") 'enlarge-window)
     (define-key evil-insert-state-map (kbd "C-S-l") 'enlarge-window)
     (define-key evil-normal-state-map (kbd ">") 'evil-indent)
+    (define-key evil-normal-state-map (kbd "gd") 'xref-find-definitions)
+    (define-key evil-normal-state-map (kbd "gD") 'xref-find-definitions-other-window)
+    (define-key evil-normal-state-map (kbd "gr") 'xref-find-references)
     )
   )
 
@@ -133,7 +136,7 @@
   (setq-default evil-escape-delay 0.3)
   (evil-escape-mode))
 
-;; comment/uncomment, use 'gd' to see how it works
+;; comment/uncomment, use 'gc' to see how it works
 (use-package evil-commentary
   :ensure t
   :hook

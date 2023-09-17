@@ -75,8 +75,8 @@
 	 )
   :bind (:map lsp-mode-map
               ("C-c C-d" . lsp-describe-thing-at-point)
-              ([remap xref-find-definitions] . lsp-find-definition)
-              ([remap xref-find-references] . lsp-find-references)
+              ([remap xref-find-definitions] . #'lsp-find-definition)
+              ([remap xref-find-references] . #'lsp-ui-peek-find-references)
 	      )
   :config
   (with-eval-after-load 'lsp-mode
@@ -86,37 +86,6 @@
     (setq lsp-completion-provider :none)	;we use Corful!
     (add-hook 'lsp-completion-mode-hook #'unicorn/lsp-mode-setup-completion)
     )
-  ;; :custom-face
-  ;; (lsp-headerline-breadcrumb-path-error-face
-  ;;  ((t :underline (:style line :color ,(face-foreground 'error))
-  ;;      :inherit lsp-headerline-breadcrumb-path-face)))
-  ;; (lsp-headerline-breadcrumb-path-warning-face
-  ;;  ((t :under
-  ;;      line (:style line :color ,(face-foreground 'warning))
-  ;;      :inherit lsp-headerline-breadcrumb-path-face)))
-  ;; (lsp-headerline-breadcrumb-path-info-face
-  ;;  ((t :underline (:style line :color ,(face-foreground 'success))
-  ;;      :inherit lsp-headerline-breadcrumb-path-face)))
-  ;; (lsp-headerline-breadcrumb-path-hint-face
-  ;;  ((t :underline (:style line :color ,(face-foreground 'success))
-  ;;      :inherit lsp-headerline-breadcrumb-path-face)))
-  ;; (lsp-headerline-breadcrumb-symbols-error-face
-  ;;  ((t :inherit lsp-headerline-breadcrumb-symbols-face
-  ;;      :underline (:style line :color ,(face-foreground 'error)))))
-  ;; (lsp-headerline-breadcrumb-symbols-warning-face
-  ;;  ((t :inherit lsp-headerline-breadcrumb-symbols-face
-  ;;      :underline (:style line :color ,(face-foreground 'warning)))))
-  ;; (lsp-headerline-breadcrumb-symbols-info-face
-  ;;  ((t :inherit lsp-headerline-breadcrumb-symbols-face
-  ;;      :underline (:style line :color ,(face-foreground 'success)))))
-  ;; (lsp-headerline-breadcrumb-symbols-hint-face
-  ;;  ((t :inherit lsp-headerline-breadcrumb-symbols-face
-  ;;      :underline (:style line :color ,(face-foreground 'success)))))
-  ;; :custom
-  ;; (lsp-vetur-format-default-formatter-css "prettier")
-  ;; (lsp-vetur-format-default-formatter-html "prettier")
-  ;; (lsp-vetur-format-default-formatter-js "prettier")
-  ;; (lsp-vetur-validation-template nil)
   )
 
 (use-package lsp-ui

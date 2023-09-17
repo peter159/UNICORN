@@ -58,7 +58,7 @@
   (indent-bars :fetcher github
     	       :repo "jdtsmith/indent-bars"
     	       :files ("*"))
-  :hook ((python-mode yaml-mode) . indent-bars-mode)
+  :hook ((python-ts-mode yaml-mode) . indent-bars-mode)
   :init
   (setq
    indent-bars-display-on-blank-lines t
@@ -74,6 +74,14 @@
    indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1) ; blend=1: blend with BG only
    indent-bars-highlight-current-depth '(:blend 0.5) ; pump up the BG blend on current
    indent-bars-display-on-blank-lines t)
+  :custom
+  (indent-bars-treesit-support t)
+  (indent-bars-no-descend-string t)
+  (indent-bars-treesit-ignore-blank-lines-types '("module"))
+  (indent-bars-treesit-wrap '((python argument_list parameters ; for python, as an example
+				      list list_comprehension
+				      dictionary dictionary_comprehension
+				      parenthesized_expression subscript)))
   )
 
 ;; Highlight matching paren,e.g. ()

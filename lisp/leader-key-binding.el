@@ -296,7 +296,7 @@
     ;; goto
     "mgr" #'lsp-find-references
     "mgt" #'lsp-find-type-definition
-    "mgd" #'xref-find-definitions
+    "mgd" #'lsp-find-definition
     "mgD" #'lsp-find-declaration
     "mgi" #'lsp-find-implementation
     "mgk" #'unicorn/lsp-avy-goto-word
@@ -339,11 +339,6 @@
 
 ;;; python
 (evil-leader/set-key-for-mode 'python-ts-mode "m=" 'yapfify-buffer)
-(evil-leader/set-key-for-mode 'python-ts-mode "mhh" 'anaconda-mode-show-doc)
-(evil-leader/set-key-for-mode 'python-ts-mode "mga" 'anaconda-mode-find-assignments)
-(evil-leader/set-key-for-mode 'python-ts-mode "mgg" 'anaconda-mode-find-definitions)
-(evil-leader/set-key-for-mode 'python-ts-mode "mgG" 'anaconda-mode-find-definitions-other-window)
-(evil-leader/set-key-for-mode 'python-ts-mode "mgu" 'anaconda-mode-find-references)
 (evil-leader/set-key-for-mode 'python-ts-mode "msb" 'python-shell-send-buffer)
 (evil-leader/set-key-for-mode 'python-ts-mode "mck" 'unicorn/quit-subjob)
 (evil-leader/set-key-for-mode 'python-ts-mode "mdb" 'unicorn/python-insert-breakpoint)
@@ -367,14 +362,6 @@
     (evil-leader/set-key-for-mode 'python-ts-mode "mcC" 'unicorn/python-execute-file-focus)
     (evil-leader/set-key-for-mode 'python-ts-mode "msi" 'unicorn/python-start-or-switch-repl)
     ))
-
-;;;; evil jump
-
-;; python mode
-(evil-define-minor-mode-key 'normal 'anaconda-mode (kbd "gd") 'anaconda-mode-find-definitions)
-(evil-define-minor-mode-key 'normal 'anaconda-mode (kbd "gD") 'anaconda-mode-find-definitions-other-window)
-;; python mode overwrite
-(evil-define-key 'normal emacs-lisp-mode-map (kbd "gD") 'unicorn/evil-goto-definition-other-window)
 
 (provide 'leader-key-binding)
 (message "leader-key-binding loaded in '%.2f' seconds" (get-time-diff time-marked))
