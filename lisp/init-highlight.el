@@ -59,11 +59,11 @@
     	       :repo "jdtsmith/indent-bars"
     	       :files ("*"))
   :hook ((python-ts-mode yaml-mode) . indent-bars-mode)
-  :init
-  (setq
-   indent-bars-display-on-blank-lines t
-   ;; indent-bars-highlight-current-depth petmacs-favor-color
-   )
+  ;; :init
+  ;; (setq
+  ;;  indent-bars-display-on-blank-lines nil
+  ;;  ;; indent-bars-highlight-current-depth petmacs-favor-color
+  ;;  )
   :config
   (setq
    indent-bars-color '(highlight :face-bg t :blend 0.15)
@@ -73,7 +73,7 @@
    indent-bars-zigzag nil
    indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1) ; blend=1: blend with BG only
    indent-bars-highlight-current-depth '(:blend 0.5) ; pump up the BG blend on current
-   indent-bars-display-on-blank-lines t)
+   indent-bars-display-on-blank-lines nil)
   :custom
   (indent-bars-treesit-support t)
   (indent-bars-no-descend-string t)
