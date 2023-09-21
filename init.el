@@ -38,10 +38,14 @@
 ;; ;; use mirror
 (setq package-check-signature nil)	; to avoid signature fail for package
 (setq-default package-archives '(
-				 ("melpa" . "http://1.15.88.122/melpa/")
-				 ("org"   . "http://1.15.88.122/org/")
-				 ("gnu"   . "http://1.15.88.122/gnu/")
-				 ("nongnu" . "http://1.15.88.122/nongnu/")
+				 ;; ("melpa" . "http://1.15.88.122/melpa/")
+				 ;; ("org"   . "http://1.15.88.122/org/")
+				 ;; ("gnu"   . "http://1.15.88.122/gnu/")
+				 ;; ("nongnu" . "http://1.15.88.122/nongnu/")
+				 ("gnu"    .  "https://elpa.gnu.org/packages/")
+				 ("melpa"  .  "https://melpa.org/packages/")
+				 ("nongnu" .  "https://elpa.nongnu.org/nongnu/")
+				 ("org"    .  "https://orgmode.org/elpa/")
 				 ))
 
 ;; Load path

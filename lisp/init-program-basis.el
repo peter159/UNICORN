@@ -39,6 +39,7 @@
   (evil-define-key 'normal imenu-list-major-mode-map (kbd "d") 'imenu-list-display-entry)
   (evil-define-key 'normal imenu-list-major-mode-map (kbd "r") 'imenu-list-refresh) 
   (evil-define-key 'normal imenu-list-major-mode-map (kbd "q") 'imenu-list-quit-window)
+  (evil-define-key 'normal imenu-list-major-mode-map (kbd "<tab>") 'hs-toggle-hiding)
   (evil-define-key 'normal imenu-list-major-mode-map [down-mouse-1] 'imenu-list-display-entry))
 
 (use-package prettify-utils
