@@ -208,7 +208,7 @@
   "bY" 'unicorn/copy-whole-buffer-to-clipboard
   "ba" 'persp-add-buffer
   "br" 'persp-remove-buffer
-  "bi" 'imenu-list-smart-toggle
+  "bi" 'symbol-outline-or-imenu-list-toggle
   ;; "bi" 'lsp-ui-imenu
   "bI" 'ibuffer)
 

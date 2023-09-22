@@ -59,6 +59,56 @@
             which-key-replacement-alist)))
   )
 
+(use-package imenu-list
+  :ensure t
+  :defer t
+  :hook (imenu-list-major-mode . (lambda ()
+				   (display-line-numbers-mode -1)
+				   (hl-line-mode -1)))
+  :init
+  (setq imenu-list-focus-after-activation t
+        imenu-list-auto-resize nil)
+  :config
+  (evil-define-key 'normal imenu-list-major-mode-map (kbd "d") 'imenu-list-display-entry)
+  (evil-define-key 'normal imenu-list-major-mode-map (kbd "r") 'imenu-list-refresh)
+  (evil-define-key 'normal imenu-list-major-mode-map (kbd "q") 'imenu-list-quit-window)
+  (evil-define-key 'normal imenu-list-major-mode-map (kbd "<tab>") 'hs-toggle-hiding)
+  (evil-define-key 'normal imenu-list-major-mode-map [down-mouse-1] 'imenu-list-display-entry))
+
+;; Define symbols-outline-smart-toggle as a global function
+(defun symbols-outline-smart-toggle ()
+  "Toggle `symbols-outline-mode' by showing or quitting the `*Outline*' buffer."
+  (interactive)
+  (if (get-buffer-window "*Outline*" t)
+      (quit-window nil (get-buffer-window "*Outline*"))
+    (symbols-outline-show)))
+(use-package symbols-outline
+  :ensure t
+  :init
+  (setq symbols-outline-window-position 'right
+        symbols-outline-collapse-functions-on-startup t
+	symbols-outline-fetch-fn #'symbols-outline-lsp-fetch
+	symbols-outline-window-width 60
+	)
+  :hook ((symbols-outline-mode . (lambda () (display-line-numbers-mode -1))))
+  :config
+  (evil-define-key 'normal symbols-outline-mode-map
+    (kbd "r") 'symbols-outline-refresh
+    (kbd "q") 'quit-window
+    (kbd "n") 'symbols-outline-next
+    (kbd "p") 'symbols-outline-prev
+    (kbd "d") 'symbols-outline-next-same-level
+    (kbd "b") 'symbols-outline-prev-same-level
+    (kbd "u") 'symbols-outline-move-depth-up
+    (kbd "f") 'symbols-outline-move-depth-down
+    (kbd "TAB") 'symbols-outline-toggle-node
+    [tab] 'symbols-outline-toggle-node
+    (kbd "S-TAB") 'symbols-outline-cycle-visibility-globally
+    [backtab] 'symbols-outline-cycle-visibility-globally
+    (kbd "RET") 'symbols-outline-visit
+    (kbd "M-RET") 'symbols-outline-visit-and-quit)
+  (symbols-outline-follow-mode))
+
 (use-package hungry-delete
   :ensure t
   :hook (after-init . global-hungry-delete-mode)

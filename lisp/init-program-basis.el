@@ -1,9 +1,9 @@
 ;;; init-program-basis.el ---                        -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2019  
+;; Copyright (C) 2019
 
 ;; Author:  <lipe6002@SHA-LPC-03254>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,31 +20,17 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
 (mark-time-here)
 
-(use-package imenu-list
-  :ensure t
-  :defer t
-  :hook (imenu-list-major-mode . (lambda ()
-				   (display-line-numbers-mode -1)
-				   (hl-line-mode -1)))
-  :init
-  (setq imenu-list-focus-after-activation t
-        imenu-list-auto-resize nil)
-  :config
-  (evil-define-key 'normal imenu-list-major-mode-map (kbd "d") 'imenu-list-display-entry)
-  (evil-define-key 'normal imenu-list-major-mode-map (kbd "r") 'imenu-list-refresh) 
-  (evil-define-key 'normal imenu-list-major-mode-map (kbd "q") 'imenu-list-quit-window)
-  (evil-define-key 'normal imenu-list-major-mode-map (kbd "<tab>") 'hs-toggle-hiding)
-  (evil-define-key 'normal imenu-list-major-mode-map [down-mouse-1] 'imenu-list-display-entry))
-
 (use-package prettify-utils
+  :ensure t
   :quelpa
-  (prettify-utils :repo "Ilazki/prettify-utils.el" :fetcher github))
+  (prettify-utils :repo "Ilazki/prettify-utils.el"
+		  :fetcher github))
 
 ;; (use-package pretty-code
 ;;   :ensure nil

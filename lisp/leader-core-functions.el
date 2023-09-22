@@ -318,6 +318,13 @@ current window."
     (message "Linux path: %s" (concat "/mnt/" (downcase (substring linux-path 0 1)) (substring linux-path 2)))
     (kill-new (concat "/mnt/" (downcase (substring linux-path 0 1)) (substring linux-path 2)))))
 
+(defun symbol-outline-or-imenu-list-toggle ()
+  "Toggle `symbols-outline-mode' or `imenu-list-mode' based on whether `lsp-mode' or `symbols-outline-mode' is active."
+  (interactive)
+  (if (or (bound-and-true-p lsp-mode) (get-buffer-window "*Outline*" t))
+      (symbols-outline-smart-toggle)
+    (imenu-list-smart-toggle)))
+
 (provide 'leader-core-functions)
 (message "leader-core-functions loaded in '%.2f' seconds ..." (get-time-diff time-marked))
 ;;; core-functions.el ends here
