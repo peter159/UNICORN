@@ -159,17 +159,20 @@
 (use-package cape
   :ensure t
   :preface
-  (defun petmacs/set-lsp-capfs ()
+  (defun unicorn/set-lsp-capfs ()
     (setq-local completion-at-point-functions
 		(list (cape-super-capf
 		       #'yasnippet-capf
-		       #'lsp-completion-at-point)
+		       #'lsp-completion-at-point
+		       )
 		      #'cape-file
 		      #'cape-dabbrev)))
   ;; :bind (("C-M-o" . cape-file))
-  :hook (lsp-completion-mode . petmacs/set-lsp-capfs)
-  :init (setq cape-dabbrev-min-length 2
-	      cape-dabbrev-check-other-buffers nil)
+  :hook
+  (lsp-completion-mode . unicorn/set-lsp-capfs)
+  :init
+  (setq cape-dabbrev-min-length 2
+	cape-dabbrev-check-other-buffers nil)
   :config
   ;; 默认用这三个补全后端
   (add-to-list 'completion-at-point-functions #'cape-file)
