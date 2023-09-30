@@ -61,7 +61,8 @@ as the pyenv version then also return nil. This works around https://github.com/
         (call-interactively 'compile)
       (compile compile-command t)
       (with-current-buffer (get-buffer "*compilation*")
-        (inferior-python-mode)))))
+        (inferior-python-mode)
+	))))
 
 (defun unicorn/python-highlight-breakpoint ()
   "highlight a break point"

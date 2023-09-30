@@ -26,6 +26,9 @@
 
 (mark-time-here)
 
+(global-set-key (kbd "C-S-f") 'forward-sexp)
+(global-set-key (kbd "C-S-b") 'backward-sexp)
+
 (eval-when-compile
   (require 'init-const))
 
