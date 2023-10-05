@@ -202,7 +202,7 @@
 			     (projects  . "nf-oct-rocket")
 			     (registers . "nf-oct-database"))
    dashboard-set-footer t
-   dashboard-footer-icon "\xe930"
+   dashboard-footer-icon ""
    dashboard-footer-messages '(" The philosophy of immersive programming"))
   :config
   (evil-define-key 'normal dashboard-mode-map
