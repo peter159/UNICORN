@@ -143,18 +143,18 @@
 	   ;; completion-in-region-mode
 	   flycheck-error-list-mode) . hide-mode-line-mode)))
 
-;; https://github.com/cyrus-and/zoom, golden-ratio
-(use-package zoom
-  :ensure t
-  :preface
-  (defun size-callback ()
-    (cond ((> (frame-pixel-width) 1280) '(90 . 0.75))
-          (t                            '(0.5 . 0.5))))
-  :hook
-  (after-init . zoom-mode)
-  :config
-  (custom-set-variables
-   '(zoom-size 'size-callback)))
+;; ;; https://github.com/cyrus-and/zoom, golden-ratio
+;; (use-package zoom
+;;   :ensure t
+;;   :preface
+;;   (defun size-callback ()
+;;     (cond ((> (frame-pixel-width) 1280) '(90 . 0.75))
+;;           (t                            '(0.5 . 0.5))))
+;;   :hook
+;;   (after-init . zoom-mode)
+;;   :config
+;;   (custom-set-variables
+;;    '(zoom-size 'size-callback)))
 
 (defun open-init-file()
   (interactive)
