@@ -70,6 +70,7 @@
         corfu-preview-current nil
         corfu-auto-delay 0.1
         corfu-auto-prefix 1
+	corfu-on-exact-match nil
         )
   (when (> (frame-pixel-width) 3000) (custom-set-faces '(corfu-default ((t (:height 1.3))))))
   (global-corfu-mode)
@@ -132,8 +133,7 @@
   (lsp-completion-mode . unicorn/set-lsp-capfs)
   :init
   (setq cape-dabbrev-min-length 2
-	cape-dabbrev-check-other-buffers nil
-	corfu-on-exact-match nil)
+	cape-dabbrev-check-other-buffers nil)
   :config
   ;; 默认用这三个补全后端
   (add-to-list 'completion-at-point-functions #'cape-file)
