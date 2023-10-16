@@ -123,7 +123,7 @@
   (defun unicorn/set-lsp-capfs ()
     (setq-local completion-at-point-functions
 		(list (cape-super-capf
-		       ;; #'yasnippet-capf
+		       #'yasnippet-capf
 		       #'lsp-completion-at-point
 		       )
 		      #'cape-file
@@ -132,7 +132,8 @@
   (lsp-completion-mode . unicorn/set-lsp-capfs)
   :init
   (setq cape-dabbrev-min-length 2
-	cape-dabbrev-check-other-buffers nil)
+	cape-dabbrev-check-other-buffers nil
+	corfu-on-exact-match nil)
   :config
   ;; 默认用这三个补全后端
   (add-to-list 'completion-at-point-functions #'cape-file)
