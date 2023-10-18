@@ -83,7 +83,7 @@
     (defun unicorn/lsp-mode-setup-completion()
       (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
 	    '(flex)))			 ; Configure flex
-    (setq lsp-completion-provider :none)	;we use Corful!
+    (setq lsp-completion-provider :none) ; we use Corful!
     (add-hook 'lsp-completion-mode-hook #'unicorn/lsp-mode-setup-completion)
     )
   )
