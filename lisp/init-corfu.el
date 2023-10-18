@@ -58,6 +58,11 @@
 ;; use corfu instead
 (use-package nerd-icons :ensure t)
 
+(use-package nerd-icons-corfu
+  :ensure t
+  :after corfu
+  :init (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
 (use-package corfu
   :ensure t
   :bind (:map corfu-map
