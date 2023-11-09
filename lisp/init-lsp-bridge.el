@@ -26,8 +26,8 @@
 
 (mark-time-here)
 
-(setq gc-cons-threshold 100000000)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq gc-cons-threshold (* 100 1024 1024)) ;; 设置垃圾回收阈值
+(setq read-process-output-max (* 1024 1024)) ;; 设置进程输出最大值
 
 (add-to-list 'load-path "<path-to-lsp-bridge>")
 

@@ -28,6 +28,8 @@
 
 ;; optimize lsp-mode
 (setenv "LSP_USE_PLISTS" "true")
+(setq gc-cons-threshold (* 100 1024 1024)) ;; 设置垃圾回收阈值
+(setq read-process-output-max (* 1024 1024)) ;; 设置进程输出最大值
 ;; (setq gc-cons-threshold 100000000
 ;;       read-process-output-max (* 1024 1024)
 ;;       lsp-use-plists t
@@ -45,9 +47,10 @@
              lsp-install-server)
   :init
   (setq lsp-log-io nil
-	gc-cons-threshold 1000000000
-	read-process-output-max (* 1024 10240) ;; @see https://github.com/emacs-lsp/lsp-mode#performance
+	;; gc-cons-threshold 1000000000
+	;; read-process-output-max (* 1024 10240) ;; @see https://github.com/emacs-lsp/lsp-mode#performance
 	lsp-use-plists t ;;https://emacs-lsp.github.io/lsp-mode/page/performance/
+	lsp-idle-delay 0.5
 	)
   (setq lsp-keymap-prefix "C-c l"
 	lsp-auto-guess-root nil
