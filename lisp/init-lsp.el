@@ -28,12 +28,6 @@
 
 ;; optimize lsp-mode
 (setenv "LSP_USE_PLISTS" "true")
-(setq gc-cons-threshold (* 100 1024 1024)) ;; 设置垃圾回收阈值
-(setq read-process-output-max (* 1024 1024)) ;; 设置进程输出最大值
-;; (setq gc-cons-threshold 100000000
-;;       read-process-output-max (* 1024 1024)
-;;       lsp-use-plists t
-;;       lsp-log-io nil)
 
 (use-package lsp-mode
   :ensure t
@@ -47,10 +41,10 @@
              lsp-install-server)
   :init
   (setq lsp-log-io nil
-	;; gc-cons-threshold 1000000000
-	;; read-process-output-max (* 1024 10240) ;; @see https://github.com/emacs-lsp/lsp-mode#performance
-	lsp-use-plists t ;;https://emacs-lsp.github.io/lsp-mode/page/performance/
-	lsp-idle-delay 0.5
+	gc-cons-threshold (* 6400 1024 1024)
+	read-process-output-max (* 40 1024 1024) ;; @see https://github.com/emacs-lsp/lsp-mode#performance
+	lsp-use-plists t			 ;;https://emacs-lsp.github.io/lsp-mode/page/performance/
+	lsp-idle-delay 0.005
 	)
   (setq lsp-keymap-prefix "C-c l"
 	lsp-auto-guess-root nil
@@ -118,13 +112,17 @@
 
 (use-package format-all
   :ensure t
+  :commands format-all-mode
   :hook
-  (lsp-mode . format-all-mode)
-  (gfm-mode . format-all-mode)
+  ;; (lsp-mode . format-all-mode)
+  ;; (gfm-mode . format-all-mode)
+  (prog-mode . format-all-mode)
   ;; (format-all-mode . format-all-ensure-formatter)
   :config
-  (global-set-key (kbd "M-f") 'format-all-buffer)
-  )
+  (setq-default format-all-formatters '(("C"     (astyle "--mode=c"))
+                                        ("Shell" (shfmt "-i" "4" "-ci"))
+					))
+  (global-set-key (kbd "M-f") 'format-all-buffer))
 
 ;; optional if you want which-key integration
 (use-package which-key

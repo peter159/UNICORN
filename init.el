@@ -28,7 +28,7 @@
 (require 'package)
 
 ;; set http proxy, not need when set `git config --global http.proxy' in terminal
-(defvar global-httpproxy "172.20.64.1:12333")
+(defvar global-httpproxy "172.24.16.1:12333")
 (if (string= (system-name) "Ubun-born")
     (setq global-httpproxy "127.0.0.1:12333"))
 (setenv "http_proxy" (concat "http://" global-httpproxy))
@@ -114,7 +114,6 @@
 (require 'init-flycheck)
 (require 'init-treesit)
 (require 'init-lsp)
-;; (require 'init-lsp-bridge)
 (require 'init-lsp-python)
 (require 'init-lsp-golang)
 (require 'init-lsp-ess)
@@ -125,12 +124,11 @@
 (require 'init-gpt)
 (require 'init-dockerfile)
 (require 'init-ts)
-(require 'init-html)
+;; (require 'init-html)
 (require 'init-markdown)
 (require 'init-json)
 (require 'init-yaml)
 (require 'init-sql)
-;; (require 'init-vba)
 
 (require 'init-shell)
 (require 'init-misc)

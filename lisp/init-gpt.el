@@ -29,10 +29,16 @@
 (use-package gptel
   :ensure t
   :config
-  (setq gptel-api-key "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"
-	gptel-use-curl t
-	gptel-proxy "http://172.20.64.1:12333"
-	gptel--debug t))
+  (setq-default gptel-backend
+		(gptel-make-azure
+		 "gpt35-turbo"		;Name, whatever you'd like
+		 :protocol "https"		;optional -- https is the default
+		 :host "linyi2.openai.azure.com"
+		 :endpoint "/openai/deployments/gpt35-azure-turbo/completions?api-version=2023-05-15" ;or equivalent
+		 :stream t		;Enable streaming responses
+		 :models '("gpt-3.5-turbo"))
+		)
+  )
 
 (provide 'init-gpt)
 (message "init-gpt loaded in '%.2f' seconds ..." (get-time-diff time-marked))

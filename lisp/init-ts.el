@@ -28,6 +28,18 @@
 
 (mark-time-here)
 
+;; Major mode for editing web templates
+(use-package web-mode
+  :mode "\\.\\(phtml\\|php\\|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
+  :hook (web-mode . (lambda () (electric-operator-mode -1)))
+  :config
+  (setq electric-pair-mode t)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  ;; (add-hook 'web-mode-hook (lambda () (electric-operator-mode -1)))
+  )
+
 ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-typescript/
 ;; npm i -g typescript-language-server; npm i -g typescript
 (use-package typescript-mode
@@ -38,12 +50,13 @@
   )
 
 (use-package lsp-volar
-  :ensure t
+  :ensure nil
   :quelpa
   (lsp-volar :fetcher github
 	     :repo "jadestrong/lsp-volar"
 	     )
   )
+
 
 (provide 'init-ts)
 (message "init-ts loaded in '%.2f' seconds" (get-time-diff time-marked))

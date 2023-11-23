@@ -26,24 +26,24 @@
 
 (mark-time-here)
 
-;;; corfu related, when not graphic use company
-(when (not (display-graphic-p))
-  (use-package company
-    :ensure t
-    :init
-    (setq company-minimum-prefix-length 1)
-    (setq company-idle-delay 0)
-    (global-company-mode t))
-  (use-package company-flx
-    :ensure t
-    :after (company)
-    :init
-    (company-flx-mode 1))
-  (with-eval-after-load 'company
-    (define-key company-active-map (kbd "M-n") nil)
-    (define-key company-active-map (kbd "M-p") nil)
-    (define-key company-active-map (kbd "C-j") #'company-select-next)
-    (define-key company-active-map (kbd "C-k") #'company-select-previous)))
+;; ;;; corfu related, when not graphic use company
+;; (when (not (display-graphic-p))
+;;   (use-package company
+;;     :ensure t
+;;     :init
+;;     (setq company-minimum-prefix-length 1)
+;;     (setq company-idle-delay 0)
+;;     (global-company-mode t))
+;;   (use-package company-flx
+;;     :ensure t
+;;     :after (company)
+;;     :init
+;;     (company-flx-mode 1))
+;;   (with-eval-after-load 'company
+;;     (define-key company-active-map (kbd "M-n") nil)
+;;     (define-key company-active-map (kbd "M-p") nil)
+;;     (define-key company-active-map (kbd "C-j") #'company-select-next)
+;;     (define-key company-active-map (kbd "C-k") #'company-select-previous)))
 
 (defun nasy/orderless-dispatch-flex-first (_pattern index _total)
   "orderless-flex for corfu."

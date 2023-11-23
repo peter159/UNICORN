@@ -126,19 +126,19 @@
   :diminish editorconfig-mode
   :hook (after-init . editorconfig-mode))
 
-;; https://wakatime.com/emacs
-(use-package wakatime-mode
-  :ensure t
-  :diminish 'wakatime-mode
-  :preface
-  (defun wakatime-dashboard ()
-    (interactive)
-    (browse-url "https://wakatime.com/dashboard"))
-  :hook
-  (after-init . global-wakatime-mode)
-  :config
-  ;; use `pip install wakatime' and `which wakatime' to get cli path
-  (setq wakatime-cli-path "~/.wakatime/wakatime-cli"))
+;; ;; https://wakatime.com/emacs
+;; (use-package wakatime-mode
+;;   :ensure t
+;;   :diminish 'wakatime-mode
+;;   :preface
+;;   (defun wakatime-dashboard ()
+;;     (interactive)
+;;     (browse-url "https://wakatime.com/dashboard"))
+;;   :hook
+;;   (after-init . global-wakatime-mode)
+;;   :config
+;;   ;; use `pip install wakatime' and `which wakatime' to get cli path
+;;   (setq wakatime-cli-path "~/.wakatime/wakatime-cli"))
 
 (use-package rg
   :ensure t
