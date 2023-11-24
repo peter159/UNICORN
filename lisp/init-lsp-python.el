@@ -124,6 +124,27 @@ as the pyenv version then also return nil. This works around https://github.com/
   (shell-command "cp ~/.emacs.d/config_snippets/python/wheelbuilder.sh .")
   )
 
+(defun unicorn/create-pyright-stub (pkg)
+  "Create a Pyright stub for the specified package."
+  (interactive "sEnter package name: ")
+  (let* ((stubs-dir "~/.stubs")
+         (typing-dir (concat stubs-dir "/typings"))
+         (pkg-dir (concat typing-dir "/" pkg))
+         (pyright-command (concat "~/.emacs.d/.cache/lsp/npm/pyright/bin/pyright --createstub " pkg)))
+    ;; Step 1: Switch to ~/.stubs directory
+    (cd stubs-dir)
+    ;; Step 2: Check if [pkg] directory exists in ~/.stubs/typing
+    (if (file-exists-p pkg-dir)
+        (progn
+          (message (concat pkg " directory already exists in ~/.stubs/typings."))
+          (when (yes-or-no-p "Do you want to delete it? ")
+            (delete-directory pkg-dir t)
+            (message (concat pkg " directory deleted."))))
+      (message (concat pkg " directory does not exist in ~/.stubs/typings.")))
+    ;; Step 3: Execute ~/.emacs.d/.cache/lsp/npm/pyright/bin/pyright --createstub [pkg]
+    (shell-command pyright-command)
+    (message (concat "Pyright stub created for " pkg "."))))
+
 (use-package python
   :ensure nil
   :init
