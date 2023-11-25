@@ -321,7 +321,8 @@ current window."
 (defun symbol-outline-or-imenu-list-toggle ()
   "Toggle `symbols-outline-mode' or `imenu-list-mode' based on whether `lsp-mode' or `symbols-outline-mode' is active."
   (interactive)
-  (if (or (bound-and-true-p lsp-mode) (get-buffer-window "*Outline*" t))
+  ;; ;FIXME: fix for ess-r-mode with symbols-outline-mode
+  (if (or (and (bound-and-true-p lsp-mode) (not (eq major-mode 'ess-r-mode))) (get-buffer-window "*Outline*" t))
       (symbols-outline-smart-toggle)
     (imenu-list-smart-toggle)))
 

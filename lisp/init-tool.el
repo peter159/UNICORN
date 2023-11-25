@@ -82,6 +82,7 @@
   (if (get-buffer-window "*Outline*" t)
       (quit-window nil (get-buffer-window "*Outline*"))
     (symbols-outline-show)))
+
 (use-package symbols-outline
   :ensure t
   :init
