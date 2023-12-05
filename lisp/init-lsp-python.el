@@ -130,7 +130,8 @@ as the pyenv version then also return nil. This works around https://github.com/
   (let* ((stubs-dir "~/.stubs")
          (typing-dir (concat stubs-dir "/typings"))
          (pkg-dir (concat typing-dir "/" pkg))
-         (pyright-command (concat "~/.emacs.d/.cache/lsp/npm/pyright/bin/pyright --createstub " pkg)))
+         (pyright-command (concat "~/.emacs.d/.cache/lsp/npm/pyright/bin/pyright --createstub " pkg))
+         (current-dir default-directory)) ; Record the current directory
     ;; Step 1: Switch to ~/.stubs directory
     (cd stubs-dir)
     ;; Step 2: Check if [pkg] directory exists in ~/.stubs/typing
@@ -143,7 +144,9 @@ as the pyenv version then also return nil. This works around https://github.com/
       (message (concat pkg " directory does not exist in ~/.stubs/typings.")))
     ;; Step 3: Execute ~/.emacs.d/.cache/lsp/npm/pyright/bin/pyright --createstub [pkg]
     (shell-command pyright-command)
-    (message (concat "Pyright stub created for " pkg "."))))
+    (message (concat "Pyright stub created for " pkg "."))
+    ;; Step 4: Switch back to the original directory
+    (cd current-dir)))
 
 (use-package python
   :ensure nil
